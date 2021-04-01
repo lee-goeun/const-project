@@ -1,10 +1,10 @@
 import React from 'react';  
+import { Container } from 'react-bootstrap';
 import { Route, Switch } from 'react-router-dom'; 
 import './App.css';
 
-import Login from "./components/Login"; 
-
-
+import Main from "./components/Main"; 
+import SignUp from "./components/user/SignUp"; 
 
 class App extends React.Component {
 
@@ -17,9 +17,12 @@ class App extends React.Component {
   render() { 
     return  ( 
       <div className="App">
-        <Switch>
-          <Route exact path="/" component={Login} /> 
-        </Switch>
+        <Container style={{maxWidth: '425px'}}>
+          <Switch>
+            <Route exact path="/" component={Main} /> 
+            <Route path="/signup" component={SignUp} /> 
+          </Switch>
+        </Container>
       </div>
     );
   }

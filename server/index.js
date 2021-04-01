@@ -7,7 +7,7 @@ const port = process.env.PORT || 5000;
 app.use(cors()); 
 
 app.use(bodyParser.json()); 
-app.use('/api/test', (req, res) => { 
+app.get('/api/test', (req, res) => { 
     const test_data = {
         userName: 'Const-User1'
     }; 
