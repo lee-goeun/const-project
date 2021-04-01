@@ -13,7 +13,7 @@ class Header extends React.Component {
     }
   }
   componentDidMount() { 
-    axios.post('http://localhost:5000/api/test')
+    axios.post('/api/test')
     .then(res => { 
       this.setState({ 
         userName: res.data.userName
@@ -27,26 +27,52 @@ class Header extends React.Component {
     return  ( 
       <div style={{
           width: '100%', 
-          height: '500px', 
+          // height: '1000px', 
           display: 'table', 
           }}>
-        <Container>
-          <Row className="justify-content-center align-items-center">
+        <Container style={{padding: '20px'}}>
+          <Row 
+            className="justify-content-center align-items-end"
+            style={{height:'500px', textAlign: 'left'}}>
             <Col>
-              <h2>
+              {/* <h2>
                 {userName ? `Hello ${userName}` : 'No User Login'}
-              </h2>
+              </h2> */}
+              <p className="text-justify" style={{fontSize: '35px'}}>
+                당신 만을 위한 <br/> 내 손안의
+              </p>
             </Col>
-            <Col >
-              <Button>
+          </Row>
+          <Row style={{textAlign: 'left', fontSize: '25px'}}>
+            <Col>
+              <p className="text-justify" style={{fontSize: '35px', color: 'orange'}}>
+                자산관리사
+              </p>
+            </Col>
+          </Row>
+          <Row style={{padding: '20px 0 20px 0'}}>
+            <Col>
+              <Button 
+                style={{
+                  width: '100%', 
+                  color: 'black', 
+                  backgroundColor: 'white', 
+                  borderColor: '#bcbcbc'}}
+                >
                 로그인
               </Button>
             </Col>
           </Row>
           <Row className="justify-content-md-center">
             <Col>
-              <Button>
-                로그인
+              <Button 
+                style={{
+                  width: '100%', 
+                  color: 'white', 
+                  backgroundColor: 'orange', 
+                  borderColor: 'orange'}}
+                >
+                회원가입
               </Button>
             </Col>
           </Row>

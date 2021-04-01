@@ -1,0 +1,39 @@
+version: '2' 
+
+services: 
+  web:
+    image: nginx:latest
+    container_name: react_web
+    restart: "on-failure"
+    ports:
+      - 80:80
+    environment: 
+      DOMAIN: http://client:3000
+    volumes:
+      - ./web/nginx.conf:/etc/nginx/nginx.conf
+
+
+  client:
+    build:
+      context: ./
+
+    container_name: client
+
+    restart: "on-failure"
+
+    expose:
+      - 3000
+    ports: 
+      - 3000:3000
+
+    volumes:
+      - './:/app'
+      - '/node_modules'
+
+    environment: 
+      NODE_ENV: development 
+      CHOKIDAR_USEPOLLING: "true"
+      DANGEROUSLY_DISABLE_HOST_CHECK: "true"
+
+    stdin_open: true
+    tty: true
