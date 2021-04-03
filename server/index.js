@@ -1,4 +1,5 @@
 const bodyParser = require('body-parser'); 
+const cookieParser = require('cookie-parser'); 
 const express = require('express'); 
 const mongoose = require('mongoose');
 const cors = require('cors'); 
@@ -18,10 +19,9 @@ dotenv.config({
 
 const { User } = require('./models/User'); 
 
-
-app.use(cors()); 
-
 app.use(bodyParser.json()); 
+app.use(cookieParser()); 
+app.use(cors()); 
 
 // Test  ========================================
 app.get('/api/test', (req, res) => { 
@@ -71,15 +71,12 @@ app.post('/api/users/signup', (req, res) => {
 
     user.save((err, user) => { 
         if (err) return res.json({ success: false, err })
-        
-        res.cookie("x_auth", user.token).status(200).json({ 
-            success: true, 
-            userId: user._id
-        })
-    })
-    return res.status(200).send({ 
-        message: "회원가입이 완료되었습니다!",
-        success: true
+        else { 
+            res.cookie("x_auth", user.token).status(200).json({ 
+                success: true, 
+                userId: user._id
+            }) 
+        }
     })
 })
 
@@ -140,5 +137,5 @@ app.get('/api/users/logout', auth, (req, res) => {
 
 const port = process.env.PORT || 5000; 
 app.listen(port, () => { 
-    console.log(`express is running on ${process.env.port}`); 
+    console.log(`express is running on ${port}`); 
 })
