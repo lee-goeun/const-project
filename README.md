@@ -10,7 +10,7 @@ In the project directory, you can run:
 ### 방법 1) Local에서 git clone 후 해당 디렉토리에서 개발 시, 서버 실행 방법 
 ``` bash
 $ npm install 
-$ npm install nodemon npm-run-all -g 
+$ npm install react-scripts nodemon npm-run-all -g 
 $ npm start    # run React && Express Server 
 ```
 이후 웹사이트 실행 [http://localhost:3000](http://localhost:3000)
