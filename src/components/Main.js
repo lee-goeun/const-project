@@ -9,25 +9,16 @@ import {Container, Row, Col, Button} from 'react-bootstrap';
 const Main = () => {
 
   const animatedItem = { 
-    0: useScrollFadeIn('up',     1,   0, 0.3),
-    1: useScrollFadeIn('up',     1, 0.3, 0.3),
-    2: useScrollFadeIn('up',     1.5, 1.2, 0.3),
+    0: useScrollFadeIn('up',    1,    0, 0.3),
+    1: useScrollFadeIn('up',    1,  0.3, 0.3),
+    2: useScrollFadeIn('up',  1.5,  1.2, 0.3),
   };
 
-  const userNameState = {
-    userName: ""
-  };
+  // useEffect(() => { 
+  //   axios.get('/api/test')
+  //     .then(res => {})
+  // }, []);
 
-  const [userName, setUserName] = useState(userNameState); 
-
-  useEffect(() => { 
-    axios.post('/api/test')
-      .then(res => { 
-        setUserName({ 
-          userName: res.data.userName
-        })
-    })
-  }, []);
   return  ( 
     <div style={{
         width: '100%', 
@@ -40,44 +31,51 @@ const Main = () => {
           style={{height:'380px', textAlign: 'left'}}
           >
           <Col {...animatedItem[0]}>
-            {/* <h2>
-              {userName ? `Hello ${userName}` : 'No User Login'}
-            </h2> */}
-            <p className="text-justify" style={{fontSize: '35px'}} >
-              당신 만을 위한 <br/> 내 손안의
-            </p>
+            <span className="text-justify" style={{fontSize: '25px', fontWeight: 'bold'}} >
+              당신의 미래를 바꾸는 <br/>
+            </span>
+            <span className="text-justify" style={{fontSize: '30px', color: '#4472c4', fontWeight: 'bold'}}>
+              크립토 금융
+            </span>
+            <span className="text-justify" style={{fontSize: '25px', fontWeight: 'bold'}}>
+              의 시작
+            </span>
           </Col>
         </Row>
-        <Row style={{textAlign: 'left', fontSize: '25px'}}>
-          <Col {...animatedItem[1]}>
-            <p className="text-justify" style={{fontSize: '35px', color: 'orange'}} >
-              자산관리사
+        <Row {...animatedItem[1]} > 
+          <Col md={12} style={{padding: '10px'}}>
+            <p className="text-justify" style={{fontSize: '40px', fontWeight: 'bold'}} >
+                해쉬브라운
             </p>
           </Col>
         </Row>
         <Row  {...animatedItem[2]}>
           <Col md={12} style={{padding: '10px'}}>
-            <Button 
-              style={{
-                width: '100%', 
-                color: 'black', 
-                backgroundColor: 'white', 
-                borderColor: '#bcbcbc'}}
-              >
-              로그인
-            </Button>
+            <Link to="/signin">
+              <Button 
+                style={{
+                  width: '100%', 
+                  color: 'black', 
+                  backgroundColor: 'white', 
+                  borderColor: '#bcbcbc', 
+                  fontWeight: 'bold'}}
+                >
+                로그인
+              </Button>
+            </Link>
           </Col>
           <Col md={12} style={{padding: '10px'}}>
             <Link to="/signup">
-            <Button 
-              style={{
-                width: '100%', 
-                color: 'white', 
-                backgroundColor: 'orange', 
-                borderColor: 'orange'}}
-              >
-              회원가입
-            </Button>
+              <Button 
+                style={{
+                  width: '100%', 
+                  color: 'white', 
+                  backgroundColor: '#4472c4', 
+                  borderColor: '#4472c4', 
+                  fontWeight: 'bold'}}
+                >
+                회원가입
+              </Button>
             </Link>
           </Col>
         </Row>

@@ -5,6 +5,7 @@ import './App.css';
 
 import Main from "./components/Main"; 
 import SignUp from "./components/user/SignUp"; 
+import SignIn from "./components/user/SignIn"; 
 
 class App extends React.Component {
 
@@ -21,6 +22,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Main} /> 
             <Route path="/signup" component={SignUp} /> 
+            <Route path="/signin" component={SignIn} /> 
           </Switch>
         </Container>
       </div>

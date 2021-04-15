@@ -72,10 +72,11 @@ app.post('/api/users/signup', (req, res) => {
     user.save((err, user) => { 
         if (err) return res.json({ success: false, err })
         else { 
-            res.cookie("x_auth", user.token).status(200).json({ 
-                success: true, 
-                userId: user._id
-            }) 
+            // res.cookie("x_auth", user.token).status(200).json({ 
+            //     success: true, 
+            //     userId: user._id
+            // }) 
+            res.json({status: "success"})
         }
     })
 })
