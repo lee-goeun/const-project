@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'; 
 import { Link } from 'react-router-dom'; 
-import { useScrollFadeIn } from '../hooks'; 
-
-import axios from 'axios'; 
+import { useScrollFadeIn } from 'hooks'; 
 
 import {Container, Row, Col, Button} from 'react-bootstrap'; 
+import logoImg from 'static/img/logo.png'; 
 
-const Main = () => {
+const MainPage = () => {
 
   const animatedItem = { 
     0: useScrollFadeIn('up',    1,    0, 0.3),
@@ -14,37 +13,42 @@ const Main = () => {
     2: useScrollFadeIn('up',  1.5,  1.2, 0.3),
   };
 
-  // useEffect(() => { 
-  //   axios.get('/api/test')
-  //     .then(res => {})
-  // }, []);
-
   return  ( 
     <div style={{
         width: '100%', 
-        // height: '1000px', 
         display: 'table', 
         }}>
       <Container style={{padding: '20px'}}>
+        <Row>
+          <Col>
+            <img 
+              src={logoImg} 
+              style={{paddingTop: '60px'}}
+            />
+          </Col>
+        </Row>
         <Row 
           className="justify-content-center align-items-end"
-          style={{height:'380px', textAlign: 'left'}}
+          style={{height:'150px', textAlign: 'left'}}
           >
           <Col {...animatedItem[0]}>
-            <span className="text-justify" style={{fontSize: '25px', fontWeight: 'bold'}} >
+            <span className="text-justify" style={{fontSize: '24px', fontWeight: 'bold'}} >
               당신의 미래를 바꾸는 <br/>
             </span>
-            <span className="text-justify" style={{fontSize: '30px', color: '#4472c4', fontWeight: 'bold'}}>
+            <span className="text-justify" style={{fontSize: '28px', color: '#4472c4', fontWeight: 'bold'}}>
               크립토 금융
             </span>
-            <span className="text-justify" style={{fontSize: '25px', fontWeight: 'bold'}}>
+            <span className="text-justify" style={{fontSize: '24px', fontWeight: 'bold'}}>
               의 시작
             </span>
           </Col>
         </Row>
         <Row {...animatedItem[1]} > 
           <Col md={12} style={{padding: '10px'}}>
-            <p className="text-justify" style={{fontSize: '40px', fontWeight: 'bold'}} >
+            <p 
+              className="text-justify" 
+              style={{fontSize: '35px', fontWeight: 'bold', color: '#4472c4', paddingLeft: '5px'}} 
+              >
                 해쉬브라운
             </p>
           </Col>
@@ -84,4 +88,4 @@ const Main = () => {
   );
 }
 
-export default Main;
+export default MainPage;
