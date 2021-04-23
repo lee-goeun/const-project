@@ -1,9 +1,15 @@
 import React from 'react'; 
 import axios from 'axios'; 
 
-
+import { withRouter } from 'react-router-dom'; 
 import {Container, Row, Col, Button} from 'react-bootstrap'; 
-import Form from 'react-bootstrap/Form'; 
+// import Form from 'react-bootstrap/Form'; 
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
+import SwipeableViews from 'react-swipeable-views';
+
+export const Component = withRouter(({history, location}) => {})
 
 class Signup extends React.Component {
 
@@ -15,6 +21,7 @@ class Signup extends React.Component {
 			password: "", 
 			password_check: "", 
 			agree_check: false, 
+      stepIndex: 0
     }
   }
 
@@ -23,6 +30,8 @@ class Signup extends React.Component {
 	handlePassword = e => { this.setState({ password: e.target.value}); };
 	handlePasswordCheck = e => { this.setState({ password_check: e.target.value}); };
 	handleAgreeCheck = () => { this.setState({ agree_check: !this.state.agree_check}); };
+  handleChangeStep = stepIndex => { this.setState({stepIndex, }); }; 
+  handleNextStep = () => { this.setState({stepIndex: this.state.stepIndex+1})}
 
   goBackPage = () => { 	
 	  this.props.history.goBack(); 
@@ -64,123 +73,178 @@ class Signup extends React.Component {
 
   render() { 
 
+    const aggreChecked = this.state.agree_check; 
+    const { stepIndex } = this.state; 
+    let chk_status; 
+    if (aggreChecked) { 
+      chk_status = <CheckCircleRoundedIcon 
+                      onClick={this.handleAgreeCheck} 
+                      style={{fontSize: 'large'}}
+                    />;
+    } else { 
+      chk_status = <CheckCircleOutlineRoundedIcon
+                      onClick={this.handleAgreeCheck} 
+                      style={{fontSize: 'large'}}
+                    />;
+    }
+
     return  ( 
       <div style={{
           width: '100%', 
-          // height: '1000px', 
-          display: 'table', 
+           display: 'table', 
           }}>
-        <Container style={{padding: '20px'}}>
+        <Container >
           <Row 
             className="align-items-top"
-            style={{height:'100px', textAlign: 'center'}}>
+            style={{height:'100px', textAlign: 'left', paddingTop: '10px'}}>
             <Col>
-              <p style={{fontSize: '35px', color: '#4472c4'}}>
-                해쉬브라운
-              </p>
+              <ArrowBackIosIcon onClick={this.goBackPage} />
+              <span style={{fontSize: '20px', paddingTop: '20px'}}>
+                회원가입
+              </span>
             </Col>
           </Row>
-          <Row style={{textAlign: 'left', fontSize: '18px', height: '400px'}}>
+          <Row>
             <Col>
-                <form>
-                    <Row style={{padding: '5px 0 5px 0'}}>
-                        <Col>
-                            <div className="form-group">
-                                <label>이름</label>
-                                <input 
-																	type="text" 
-																	className="form-control" 
-																	placeholder="이름"  
-																	value={this.state.name}
-																	onChange={this.handleName}
-																/>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row style={{padding: '5px 0 5px 0'}}>
-                        <Col>
-                            <div className="form-group">
-                                <label>이메일 계정</label>
-                                <input 
-																	type="email" 
-																	className="form-control" 
-																	placeholder="abc@example.com" 
-																	value={this.state.email}
-																	onChange={this.handleEmail}
-																/>
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row style={{padding: '5px 0 5px 0'}}>
-                        <Col>
-                            <div className="form-group">
-                                <label>비밀번호</label>
-                                <input 
-																	type="password" 
-																	className="form-control" 
-																	placeholder="비밀번호 입력" 
-																	value={this.state.password}
-																	onChange={this.handlePassword}
-																/>
-                            </div>
-                        </Col>
-                    </Row>
-										<Row style={{padding: '5px 0 5px 0'}}>
-                        <Col>
-                            <div className="form-group">
-                                <label>비밀번호 확인</label>
-                                <input 
-																	type="password" 
-																	className="form-control" 
-																	placeholder="비밀번호 확인" 
-																	value={this.state.password_check}
-																	onChange={this.handlePasswordCheck}
-																/>
-                            </div>
-                        </Col>
-                    </Row>
-                </form>
+              <table style={{marginLeft: 'auto', marginRight: 'auto'}}>
+                <tbody>
+                  <tr>
+                    <td style={{padding: '0 5px 0 5px'}}>
+                      <span style={{ backgroundColor: stepIndex == 0 ? '#4472c4' : '#fff', width: '10px', height: '10px', borderStyle: 'solid', borderWidth: '1px', borderColor: '#b2b2b2', borderRadius: '50%', display: 'inline-block'}} />
+                    </td>
+                    <td style={{padding: '0 5px 0 5px'}}>
+                      <span style={{ backgroundColor: stepIndex == 1 ? '#4472c4' : '#fff', width: '10px', height: '10px', borderStyle: 'solid', borderWidth: '1px', borderColor: '#b2b2b2', borderRadius: '50%', display: 'inline-block'}} />
+                    </td>
+                    <td style={{padding: '0 5px 0 5px'}}>
+                      <span style={{ backgroundColor: stepIndex == 2 ? '#4472c4' : '#fff', width: '10px', height: '10px', borderStyle: 'solid', borderWidth: '1px', borderColor: '#b2b2b2', borderRadius: '50%', display: 'inline-block'}} />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </Col>
+          </Row>
+          <Row style={{textAlign: 'center', fontSize: '18px', height: '400px'}}>
+            <SwipeableViews index={stepIndex} onChangeIndex={this.handleChangeStep}>
+              <div style={Object.assign({})}>
+                {chk_status}
+                <span>약관을 동의하셨습니다.</span>
+                <Button 
+                  style={{
+                    width: '100%', 
+                    color: 'white', 
+                    backgroundColor: '#4472c4', 
+                    borderColor: '#4472c4'}}
+                  type="submit"
+                  onClick={this.handleNextStep}
+                  >
+                  다음
+                </Button>
+              </div>
+              <div style={Object.assign({})}>
+                <Row style={{textAlign: 'left'}}>
+                  <Col>
+                    <form>
+                      <Row style={{padding: '5px 0 5px 0'}}>
+                          <Col>
+                              <div className="form-group">
+                                  <label>이름</label>
+                                  <input 
+                                    type="text" 
+                                    className="form-control" 
+                                    placeholder="이름"  
+                                    value={this.state.name}
+                                    onChange={this.handleName}
+                                  />
+                              </div>
+                          </Col>
+                      </Row>
+                      <Row style={{padding: '5px 0 5px 0'}}>
+                          <Col>
+                              <div className="form-group">
+                                  <label>이메일 계정</label>
+                                  <input 
+                                    type="email" 
+                                    className="form-control" 
+                                    placeholder="abc@example.com" 
+                                    value={this.state.email}
+                                    onChange={this.handleEmail}
+                                  />
+                              </div>
+                          </Col>
+                      </Row>
+                      <Row style={{padding: '5px 0 5px 0'}}>
+                          <Col>
+                              <div className="form-group">
+                                  <label>비밀번호</label>
+                                  <input 
+                                    type="password" 
+                                    className="form-control" 
+                                    placeholder="비밀번호 입력" 
+                                    value={this.state.password}
+                                    onChange={this.handlePassword}
+                                  />
+                              </div>
+                          </Col>
+                      </Row>
+                      <Row style={{padding: '5px 0 5px 0'}}>
+                          <Col>
+                              <div className="form-group">
+                                  <label>비밀번호 확인</label>
+                                  <input 
+                                    type="password" 
+                                    className="form-control" 
+                                    placeholder="비밀번호 확인" 
+                                    value={this.state.password_check}
+                                    onChange={this.handlePasswordCheck}
+                                  />
+                              </div>
+                          </Col>
+                      </Row>
+                    </form>
+                  </Col>
+                </Row>
+                <Button 
+                  style={{
+                    width: '100%', 
+                    color: 'white', 
+                    backgroundColor: '#4472c4', 
+                    borderColor: '#4472c4'}}
+                  type="submit"
+                  onClick={this.handleNextStep}
+                  >
+                  회원가입 
+                </Button>
+                </div>
+              <div style={Object.assign({})}>
+                비밀암호
+                <Button 
+                  style={{
+                    width: '100%', 
+                    color: 'white', 
+                    backgroundColor: '#4472c4', 
+                    borderColor: '#4472c4'}}
+                  type="submit"
+                  onClick={this.submitSignUp}
+                  >
+                  완료
+                </Button>
+                </div>
+            </SwipeableViews>
+            
+            
+            
           </Row>
 					<Row>
 						<Col>
-							<Form.Group>
-								<Form.Check 
-									type="checkbox" 
-									label="약관을 동의하였습니다" 
-									value={this.state.agree_check}
-									onChange={this.handleAgreeCheck}
-									className="text-justify"
-									style={{paddingLeft: '30px'}}
-								/>
-							</Form.Group>
+                
 						</Col>
 					</Row>
           <Row style={{padding: '20px 0 20px 0'}}>
             <Col>
-              <Button 
-                style={{
-                width: '100%', 
-                color: 'black', 
-                backgroundColor: 'white', 
-                borderColor: '#bcbcbc'}}
-                onClick={this.goBackPage}
-                >
-                이전으로
-              </Button>
+              
             </Col>
             <Col>
-              <Button 
-                style={{
-                  width: '100%', 
-                  color: 'white', 
-                  backgroundColor: '#4472c4', 
-                  borderColor: '#4472c4'}}
-								type="submit"
-								onClick={this.submitSignUp}
-                >
-                회원가입
-              </Button>
+              
             </Col>
           </Row>
         </Container>
@@ -189,4 +253,4 @@ class Signup extends React.Component {
   }
 }
 
-export default Signup;
+export default withRouter(Signup);
