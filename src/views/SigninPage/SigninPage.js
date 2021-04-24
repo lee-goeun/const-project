@@ -1,7 +1,11 @@
 import React, {useState} from 'react'; 
 
 import {Container, Row, Col, Button} from 'react-bootstrap'; 
-import axios from 'axios'; 
+import logoImg from 'static/img/logo.png'; 
+import googleLogoImg from 'static/img/google_logo.png'; 
+
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+
 
 import { useHistory } from 'react-router-dom'; 
 import { useDispatch } from 'react-redux'; 
@@ -41,66 +45,53 @@ function SigninPage(props) {
   return ( 
     <div style={{
       width: '100%', 
-      // height: '1000px', 
       display: 'table', 
       }}>
-      <Container style={{padding: '20px'}}>
+      <Container>
         <Row 
           className="align-items-top"
-          style={{height:'100px', textAlign: 'center'}}>
+          style={{height:'70px', textAlign: 'left', paddingTop: '10px'}}>
           <Col>
-            <p style={{fontSize: '35px', color: '#4472c4'}}>
-              해쉬브라운
-            </p>
+            <ArrowBackIosIcon onClick={() => { history.goBack()}} />
+            <span style={{fontSize: '20px'}}>
+              로그인
+            </span>
           </Col>
         </Row>
-        <Row style={{textAlign: 'left', fontSize: '18px', height: '400px'}}>
+        <Row>
           <Col>
-              <form>
-                  <Row style={{padding: '5px 0 5px 0'}}>
-                      <Col>
-                          <div className="form-group">
-                              <label>이메일 계정</label>
-                              <input 
-                                type="email" 
-                                className="form-control" 
-                                placeholder="abc@example.com" 
-                                onChange={onEmailHandler}
-                              />
-                          </div>
-                      </Col>
-                  </Row>
-                  <Row style={{padding: '5px 0 5px 0'}}>
-                      <Col>
-                          <div className="form-group">
-                              <label>비밀번호</label>
-                              <input 
-                                type="password" 
-                                className="form-control" 
-                                placeholder="비밀번호 입력" 
-                                onChange={onPasswordHandler}
-                              />
-                          </div>
-                      </Col>
-                  </Row>
-              </form>
+            <img 
+              src={logoImg} 
+              style={{padding: '20px 0 20px 0'}}
+              />
           </Col>
         </Row>
-        
-        <Row style={{padding: '20px 0 20px 0'}}>
-          <Col>
-            <Button 
-              style={{
-                width: '100%', 
-                color: 'black', 
-                backgroundColor: 'white', 
-                borderColor: '#bcbcbc'}}
-              onClick={() => { history.goBack()}}
-              >
-              이전으로
-            </Button>
+        <Row style={{textAlign: 'left', fontSize: '14px', padding: '0 30px 0 30px'}}>
+          <Col xs="12" style={{padding: '10px'}}>
+            <input 
+              type="email" 
+              className="form-control" 
+              placeholder="아이디 입력" 
+              onChange={onEmailHandler}
+            />
           </Col>
-          <Col>
+          <Col xs="12" style={{padding: '10px'}}>
+            <input 
+              type="password" 
+              className="form-control" 
+              placeholder="4-8자리의 숫자,영문,특수기호 사용" 
+              onChange={onPasswordHandler}
+            />
+          </Col>
+          <Col xs="12" style={{padding: '0 10px 10px 10px'}}>
+            <input 
+              type="checkbox" 
+            /> 
+            <span style={{paddingLeft: '5px'}}>아이디 저장</span>
+          </Col>
+        </Row>
+        <Row style={{padding: '0 30px 0 30px'}}>
+          <Col xs="12">
             <Button 
               style={{
                 width: '100%', 
@@ -111,6 +102,54 @@ function SigninPage(props) {
               onClick={onSubmitHandler}
               >
               로그인
+            </Button>
+          </Col>
+          <Col xs="12" style={{fontSize: '12px', padding: '10px'}}>
+            <span>비밀번호 재설정</span>
+            <span> | </span>
+            <span onClick={() => {history.push('/signup')}}>회원가입</span>
+          </Col>
+        </Row>
+        <Row style={{padding: '0 80px 0 80px'}}>
+          <Col xs="12" style={{padding: '5px 5px'}}>
+            <Button
+              style={{
+                width: '100%', 
+                color: 'black', 
+                backgroundColor: '#FFD114', 
+                borderColor: '#FFD114', 
+                fontSize: '12px'}}
+              type="submit"
+            >카카오로 로그인
+            </Button>
+          </Col>
+          <Col xs="12" style={{padding: '5px 5px'}}>
+            <Button
+              style={{
+                width: '100%', 
+                color: 'black', 
+                backgroundColor: '#19CE60', 
+                borderColor: '#19CE60', 
+                fontSize: '12px'}}
+              type="submit"
+            >네이버로 로그인
+            </Button>
+          </Col>
+          <Col xs="12" style={{padding: '5px 5px'}}>
+            <Button
+              style={{
+                width: '100%', 
+                color: 'black', 
+                backgroundColor: '#fff', 
+                borderColor: '#000', 
+                fontSize: '12px'}}
+              type="submit"
+            >
+              <img 
+              src={googleLogoImg} 
+              style={{}}
+              />
+              Google로 로그인
             </Button>
           </Col>
         </Row>

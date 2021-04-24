@@ -28,7 +28,6 @@ app.get('/api/test', (req, res) => {
     const test_data = {
         userName: 'Const-User1'
     }; 
-    console.log("test_data: ", test_data); 
     res.json(test_data); 
 })
 
