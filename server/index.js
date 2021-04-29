@@ -19,9 +19,18 @@ dotenv.config({
 
 const { User } = require('./models/User'); 
 
-app.use(bodyParser.json()); 
+app.use('/api', bodyParser.urlencoded({extended: false})); 
+app.use('/api', bodyParser.json()); 
 app.use(cookieParser()); 
 app.use(cors()); 
+
+// Production ===================================
+// if (process.env.NODE_ENV === "production") {
+//     app.use(express.static(path.join(__dirname, "../build"))); 
+//     app.get("/", (req, res) => { 
+//         res.sendFile(path.join(__dirname, "../build", "index.html")); 
+//     })
+// }
 
 // Test  ========================================
 app.get('/api/test', (req, res) => { 

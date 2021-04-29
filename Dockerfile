@@ -13,4 +13,6 @@ RUN npm install npm-run-all -g --silent
 RUN npm audit fix
 
 COPY . /app
+RUN npm rebuild bcrypt --build-from-source
 CMD ["npm", "start"]
+# CMD ["npm", "run", "production"]

@@ -37,9 +37,11 @@
     "start:client": "react-scripts start",
     "start:server": "nodemon ./server/index.js",
     "build": "react-scripts build",
+    "production": "react-scripts build && nodemon ./server/index.js NODE_ENV=production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:5000", 
   "eslintConfig": {
     "extends": [
       "react-app",
