@@ -31,7 +31,7 @@ class App extends React.Component {
         )} 
       >
         <div className="App">
-          <Container style={{minWidth: '375px', padding: '0 0 0 0'}}>
+          <Container style={{minWidth: '375px', maxWidth: '800px', padding: '0 0 0 0'}}>
             <Switch>
               <Route exact path="/" component={Auth(MainPage, false)} /> 
               <Route path="/signup" component={Auth(SignupPage, false)} /> 

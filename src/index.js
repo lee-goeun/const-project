@@ -4,11 +4,21 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles'; 
+
+const theme = createMuiTheme({
+  typography: { 
+    fontFamily: 'Roboto Medium', 
+  }, 
+}); 
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <MuiThemeProvider
+        theme={theme}>
+        <App />
+      </MuiThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
