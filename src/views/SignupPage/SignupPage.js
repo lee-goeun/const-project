@@ -4,9 +4,16 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom'; 
 import {Container, Row, Col, Button} from 'react-bootstrap'; 
 // import Form from 'react-bootstrap/Form'; 
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+
+import ClearIcon from '@material-ui/icons/Clear'
 import CheckCircleOutlineRoundedIcon from '@material-ui/icons/CheckCircleOutlineRounded';
 import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
+
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Input from "@material-ui/core/Input";
+
+
 import Divider from '@material-ui/core/Divider';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -64,10 +71,10 @@ class Signup extends React.Component {
   handleChangeStep = stepIndex => { this.setState({stepIndex, }); }; 
   handleNextStep = () => { 
 
-    if (!this.state.agree_clause_essential || !this.state.agree_collect_personalinfo_essential) { 
-			alert("필수 약관 동의를 클릭해 주세요!")
-			return; 
-		}
+    // if (!this.state.agree_clause_essential || !this.state.agree_collect_personalinfo_essential) { 
+		// 	alert("필수 약관 동의를 클릭해 주세요!")
+		// 	return; 
+		// }
 
     this.setState({stepIndex: this.state.stepIndex+1}); 
   }
@@ -147,6 +154,9 @@ class Signup extends React.Component {
       agree_collect_personalinfo_optional,  // 이용약관(선택)
       agree_all, 
 
+			name, 
+			email, 
+
       warning_message
     } = this.state; 
 
@@ -176,6 +186,10 @@ class Signup extends React.Component {
       )
     })
 
+		let check_name = name ? true: false; 
+		let check_email = email ? true: false; 
+
+
     return  ( 
       <div style={{
           width: '100%', 
@@ -184,48 +198,143 @@ class Signup extends React.Component {
         <Container>
           <Row 
             className="align-items-top"
-            style={{height:'70px', textAlign: 'left', paddingTop: '10px'}}>
+            style={{height:'70px', textAlign: 'left', paddingTop: '20px'}}>
             <Col>
-              <ArrowBackIosIcon onClick={this.goBackPage} />
-              <span style={{fontSize: '20px'}}>
-                회원가입
-              </span>
+              <ClearIcon onClick={this.goBackPage} />
             </Col>
           </Row>
-          <Row>
-            <Col>
-              <table style={{marginLeft: 'auto', marginRight: 'auto'}}>
-                <tbody>
-                  <tr>
-                    <td style={{padding: '0 5px 0 5px'}}>
-                      <span style={{ 
-                        backgroundColor: stepIndex === 0 ? '#4472c4' : '#fff', 
-                        width: '10px', height: '10px', 
-                        borderStyle: 'solid', borderWidth: '1px', borderColor: '#b2b2b2', borderRadius: '50%', 
-                        display: 'inline-block'}} />
-                    </td>
-                    <td style={{padding: '0 5px 0 5px'}}>
-                      <span style={{ 
-                        backgroundColor: stepIndex === 1 ? '#4472c4' : '#fff', 
-                        width: '10px', height: '10px', 
-                        borderStyle: 'solid', borderWidth: '1px', borderColor: '#b2b2b2', borderRadius: '50%', 
-                        display: 'inline-block'}} />
-                    </td>
-                    <td style={{padding: '0 5px 0 5px'}}>
-                      <span style={{ 
-                        backgroundColor: stepIndex === 2 ? '#4472c4' : '#fff', 
-                        width: '10px', height: '10px', 
-                        borderStyle: 'solid', borderWidth: '1px', borderColor: '#b2b2b2', borderRadius: '50%', 
-                        display: 'inline-block'}} />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </Col>
-          </Row>
-          <Row style={{textAlign: 'center', fontSize: '14px', padding: '0 20px 0 20px'}}>
+          <Row style={{textAlign: 'center', padding: '0 20px 0 20px'}}>
             <SwipeableViews index={stepIndex} onChangeIndex={this.handleChangeStep}>
+              
+              <div style={Object.assign({})}>
+                <Row style={{paddingTop: '20px', textAlign: 'left', paddingBottom: '10px'}}>
+                  <Col>
+                    <span
+											style={{
+												fontSize: '19px',
+												fontWeight: 'bold'
+											}}
+										>이름을 입력해 주세요</span>
+                  </Col>
+                </Row> 
+                <Row 
+									style={{
+										textALign: 'center',
+										paddingTop: '20px'
+									}}>
+                  <Col>
+                    <div style={{
+                      backgroundColor: '#E8EEFF', 
+                      borderRadius: '10px', 
+                      height: '70px', 
 
+                    }}> 
+                      <FormControl fullWidth={true}>
+                        <InputLabel style={{
+                          color:'#85AEFF', 
+                          padding: '12px'
+                          }}>
+                          이름
+                        </InputLabel>
+                        <Input 
+                          disableUnderline={true}
+                          placeholder="홍길동"
+                          style={{padding: '10px'}}
+                          onChange={this.handleName}
+                        >
+                        </Input>
+                      </FormControl>
+                    </div>
+                  </Col>
+                </Row>
+                <Row
+                  style={{
+                    position: 'absolute', 
+                    paddingLeft: '35px',
+                    bottom: '0px',
+                    width: '100%',
+                    textALign: 'center'
+                  }}>
+                  <Col style={{padding: '0'}}>
+                    <Button
+                      style={{
+                        width: '100%', 
+                        height: '50px',
+                        backgroundColor: '#002BFF', 
+                        fontSize: '14px'
+                      }}
+                      disabled={!check_name}
+                      onClick={this.handleNextStep}
+                    >계속하기</Button>
+                  </Col>
+                </Row>
+              </div>
+
+							<div style={Object.assign({})}>
+                <Row style={{paddingTop: '20px', textAlign: 'left', paddingBottom: '10px'}}>
+                  <Col>
+                    <span
+											style={{
+												fontSize: '19px',
+												fontWeight: 'bold'
+											}}
+										>이메일을 입력해 주세요</span>
+                  </Col>
+                </Row> 
+                <Row 
+									style={{
+										textALign: 'center',
+										paddingTop: '20px'
+									}}>
+                  <Col>
+                    <div style={{
+                      backgroundColor: '#E8EEFF', 
+                      borderRadius: '10px', 
+                      height: '70px', 
+
+                    }}> 
+                      <FormControl fullWidth={true}>
+                        <InputLabel style={{
+                          color:'#85AEFF', 
+                          padding: '12px'
+                          }}>
+                          이메일
+                        </InputLabel>
+                        <Input 
+                          disableUnderline={true}
+                          placeholder="welcome@clink.com"
+                          style={{padding: '10px'}}
+                          onChange={this.handleEmail}
+                        >
+                        </Input>
+                      </FormControl>
+                    </div>
+                  </Col>
+                </Row>
+                <Row
+                  style={{
+                    position: 'absolute', 
+                    paddingLeft: '35px',
+                    bottom: '0px',
+                    width: '100%',
+                    textALign: 'center'
+                  }}>
+                  <Col style={{padding: '0'}}>
+                    <Button
+                      style={{
+                        width: '100%', 
+                        height: '50px',
+                        backgroundColor: '#002BFF', 
+                        fontSize: '14px'
+                      }}
+                      disabled={!check_email}
+                      onClick={this.handleNextStep}
+                    >계속하기</Button>
+                  </Col>
+                </Row>
+              </div>
+
+              
               {/* Step1 => 이용약관 동의 화면 */}
               <div style={Object.assign({})}>
                 <Row style={{paddingTop: '20px', textAlign: 'left', paddingBottom: '10px'}}>
