@@ -12,14 +12,16 @@ var UserSchema = new Schema({
         trim: true, 
         unique: 1
     }, 
+    name: { 
+        type: String, 
+        trim: true, 
+        unique: 1, 
+        maxlength: 50
+    }, 
     password: { 
         type: String, 
         minlength: 5
-    }, 
-    name: { 
-        type: String, 
-        maxlength: 50
-    }, 
+    },
     agree_section: {
         type: Object, 
     }, 

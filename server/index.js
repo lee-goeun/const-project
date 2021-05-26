@@ -89,6 +89,16 @@ app.post('/api/users/signup', (req, res) => {
     })
 })
 
+app.post('/api/users/checkname', (req, res) => {
+
+	User.findOne({name: req.body.name}, (err, user) => {
+		if(!user) {
+			return res.json({result: false})
+		}
+		return res.json({result: true})
+	})
+})
+
 app.post('/api/users/signin', (req, res) => { 
 
     // Log in
