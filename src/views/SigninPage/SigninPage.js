@@ -10,11 +10,14 @@ import { withRouter } from 'react-router';
 
 import CloseIcon from '@material-ui/icons/Close';
 
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import Input from "@material-ui/core/Input";
+import { 
+  Checkbox, 
+  FormControl, 
+  Input, 
+  InputLabel 
+} from '@material-ui/core';
 
-
+import './signin_page.css'
 
 function SigninPage(props) {
 
@@ -23,13 +26,36 @@ function SigninPage(props) {
 
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState(""); 
+  const [statusMessage, setStatusMessage] = useState(setFormStatusMessage("먼저 로그인이 필요해요:)"));
 
-  React.useEffect(() => { })
+
+  // React.useEffect(() => { })
 
 
-  const onEmailHandler = (event) => { setEmail(event.currentTarget.value); }
+  const onEmailHandler = (event) => { 
+    let email = event.currentTarget.value; 
+    if (!email) {
+      setStatusMessage(setFormStatusMessage("먼저 로그인이 필요해요:)"));  
+      return; 
+    }
+
+    setEmail(email); 
+    setStatusMessage(setFormStatusMessage(""));
+  }
   const onPasswordHandler = (event) => { setPassword(event.currentTarget.value); }
 
+  function setFormStatusMessage(msg, status=true) { 
+    if (!msg) { return (<div style={{fontSize: '12px'}}>&nbsp;</div>)};
+    return (
+      <div
+        style={{
+          fontSize: '12px',
+          color: status ? '#615EFF' : '#F63131'
+      }}>
+        {msg}
+      </div>
+    )
+  }
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -39,27 +65,27 @@ function SigninPage(props) {
         if(res.payload.success) { 
           history.push('/dashboard')
         } else { 
-          alert('error')
+          setStatusMessage(setFormStatusMessage("아이디 또는 비밀번호가 일치하지 않습니다.", false));
         }
       })
   }
 
   return ( 
-    <Container>
+    <Container style={{padding: '3px'}}>
       <Row 
-        className="align-items-end"
-        style={{
-        height: '50px',
-        textAlign: 'right'
-      }}>
-        <Col>
-          <CloseIcon />
+        className="align-items-start"
+        style={{height:'120px', paddingTop: '30px'}}>
+      
+        <Col style={{textAlign: 'end'}}>
+          <CloseIcon 
+            onClick={() => {props.history.goBack();}} 
+          />
         </Col>
       </Row>
       <Row 
         className="align-items-end"
         style={{
-          height: '150px',
+          height: '120px',
           textAlign: 'left', 
           paddingBottom: '10px'}}>
         <Col md={12}>
@@ -69,13 +95,7 @@ function SigninPage(props) {
               fontWeight: 'bold'
             }}
           >로그인</div>
-          <div
-            style={{
-              fontSize: '12px',
-              color: '#615EFF'
-            }}>
-            먼저 로그인이 필요해요:)
-          </div>
+          {statusMessage}
         </Col>
       </Row> 
       <Row 
@@ -84,16 +104,12 @@ function SigninPage(props) {
           paddingTop: '20px'
         }}>
         <Col>
-          <div style={{
-            backgroundColor: '#EFF5FF', 
-            borderRadius: '5px', 
-            height: '50px', 
-
-          }}> 
+          <div className='input-box'> 
             <FormControl fullWidth={true}>
               <InputLabel style={{
-                color:'#85AEFF', 
-                padding: '0 0 5px 8px'
+                color:'#828282', 
+                padding: '0 0 5px 8px',
+                fontSize: '15px'
                 }}>
                 이메일
               </InputLabel>
@@ -101,6 +117,7 @@ function SigninPage(props) {
                 disableUnderline={true}
                 placeholder="example@email.com"
                 style={{padding: '0 0 5px 8px'}}
+                onChange={onEmailHandler}
               >
               </Input>
             </FormControl>
@@ -113,16 +130,12 @@ function SigninPage(props) {
           paddingTop: '20px'
         }}>
         <Col>
-          <div style={{
-            backgroundColor: '#EFF5FF', 
-            borderRadius: '5px', 
-            height: '50px', 
-
-          }}> 
+          <div className='input-box'> 
             <FormControl fullWidth={true}>
               <InputLabel style={{
-                color:'#85AEFF', 
-                padding: '0 0 5px 8px'
+                color:'#828282', 
+                padding: '0 0 5px 8px', 
+                fontSize: '15px'
                 }}>
                 비밀번호
               </InputLabel>
@@ -131,16 +144,21 @@ function SigninPage(props) {
                 placeholder="비밀번호"
                 type="password"
                 style={{padding: '0 0 5px 8px'}}
+                onChange={onPasswordHandler}
               >
               </Input>
             </FormControl>
           </div>
         </Col>
       </Row>
-      <Row style={{height: '100px', marginTop: '20px'}}>
+      <Row style={{height: '80px', marginTop: '20px'}}>
         <Col style={{textAlign: 'left'}}>
-          <input type="checkbox" /> 
-          <span style={{paddingLeft: '5px'}}>자동 로그인</span>
+          <Checkbox 
+            size="small"
+            color="primary"
+            style={{padding: '0'}}
+          />
+          <span style={{fontSize: '12px', paddingLeft: '5px'}}>자동로그인</span>
         </Col>
       </Row>
       <Row>
@@ -154,6 +172,7 @@ function SigninPage(props) {
               borderColor: '#615EFF', 
               fontSize: '14px', 
               fontWeight: 'bold'}}
+            onClick={onSubmitHandler}
             >
             로그인
           </Button>
@@ -161,8 +180,8 @@ function SigninPage(props) {
       </Row>
       <Row style={{paddingTop: '15px'}}>
         <Col>
-          <span>비밀번호를 잃으셨나요?</span>
-          <span style={{marginLeft: '8px', color:'#95B1F9'}}>비밀번호 재설정</span>
+          <span style={{fontSize: '13px'}}>비밀번호를 잃으셨나요?</span>
+          <span style={{fontSize: '13px', marginLeft: '8px', color:'#95B1F9'}}>비밀번호 재설정</span>
         </Col>
       </Row>
 
@@ -175,14 +194,13 @@ function SigninPage(props) {
           margin: '0 auto', 
       }}>
         <Col>
-          <span>아직 회원이 아니신가요?</span>
+          <span style={{fontSize: '13px'}}>아직 회원이 아니신가요?</span>
           <Link to="/signup">
-            <span style={{marginLeft: '8px', color:'#95B1F9'}}>회원가입 &gt; </span>  
+            <span style={{fontSize: '13px', marginLeft: '8px', color:'#615EFF'}}>회원가입 &gt; </span>  
           </Link>
         </Col>
       </Row>
     </Container>
-    
   )
 }
 
