@@ -26,7 +26,7 @@ function SigninPage(props) {
 
   const [email, setEmail] = useState(""); 
   const [password, setPassword] = useState(""); 
-  const [statusMessage, setStatusMessage] = useState(setFormStatusMessage("먼저 로그인이 필요해요:)"));
+  const [statusMessage, setStatusMessage] = useState(setFormStatusMessage(""));
 
 
   // React.useEffect(() => { })
@@ -34,10 +34,10 @@ function SigninPage(props) {
 
   const onEmailHandler = (event) => { 
     let email = event.currentTarget.value; 
-    if (!email) {
-      setStatusMessage(setFormStatusMessage("먼저 로그인이 필요해요:)"));  
-      return; 
-    }
+    // if (!email) {
+    //   setStatusMessage(setFormStatusMessage("먼저 로그인이 필요해요:)"));  
+    //   return; 
+    // }
 
     setEmail(email); 
     setStatusMessage(setFormStatusMessage(""));
@@ -45,15 +45,15 @@ function SigninPage(props) {
   const onPasswordHandler = (event) => { setPassword(event.currentTarget.value); }
 
   function setFormStatusMessage(msg, status=true) { 
-    if (!msg) { return (<div style={{fontSize: '12px'}}>&nbsp;</div>)};
+    if (!msg) { return (<span style={{fontSize: '12px'}}>&nbsp;</span>)};
     return (
-      <div
+      <span
         style={{
           fontSize: '12px',
           color: status ? '#615EFF' : '#F63131'
       }}>
         {msg}
-      </div>
+      </span>
     )
   }
 
@@ -95,20 +95,20 @@ function SigninPage(props) {
               fontWeight: 'bold'
             }}
           >로그인</div>
-          {statusMessage}
         </Col>
       </Row> 
       <Row 
+        className='align-items-end'
         style={{
           textALign: 'center',
-          paddingTop: '20px'
+          paddingTop: '20px', 
         }}>
         <Col>
           <div className='input-box'> 
             <FormControl fullWidth={true}>
               <InputLabel style={{
                 color:'#828282', 
-                padding: '0 0 5px 8px',
+                padding: '5px 0 0 8px',
                 fontSize: '15px'
                 }}>
                 이메일
@@ -116,7 +116,7 @@ function SigninPage(props) {
               <Input 
                 disableUnderline={true}
                 placeholder="example@email.com"
-                style={{padding: '0 0 5px 8px'}}
+                style={{padding: '0 0 2px 8px'}}
                 onChange={onEmailHandler}
               >
               </Input>
@@ -134,7 +134,7 @@ function SigninPage(props) {
             <FormControl fullWidth={true}>
               <InputLabel style={{
                 color:'#828282', 
-                padding: '0 0 5px 8px', 
+                padding: '5px 0 0 8px', 
                 fontSize: '15px'
                 }}>
                 비밀번호
@@ -151,8 +151,11 @@ function SigninPage(props) {
           </div>
         </Col>
       </Row>
-      <Row style={{height: '80px', marginTop: '20px'}}>
-        <Col style={{textAlign: 'left'}}>
+      <Row style={{height: '80px', marginTop: '5px'}}>
+        <Col xs={8} style={{textAlign: 'left'}}>
+          {statusMessage}
+        </Col>
+        <Col xs={4}  style={{textAlign: 'right'}}>
           <Checkbox 
             size="small"
             color="primary"

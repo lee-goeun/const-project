@@ -16,7 +16,7 @@ const MainPage = () => {
       <Container>
         <Row 
           className="align-items-end"
-          style={{height:'400px'}}
+          style={{height:'400px', paddingBottom: '30px'}}
         >
           <Col md={12}>
             <Anime
@@ -39,7 +39,7 @@ const MainPage = () => {
             </Anime>
           </Col>
         </Row>
-        <Row style={{height: '50px', paddingTop: '0'}}>
+        <Row style={{height: '50px', paddingTop: '0px'}}>
           <Col style={{textAlign: 'center'}}>
             <Anime
               easing="easeInSine"
@@ -47,12 +47,13 @@ const MainPage = () => {
               delay={2000}
               direction="normal"
               translateX="-32%"
-              translateY="-20%"
+              translateY="10px"
               scale={[1, .6]}
             >
               <img 
                 src={logoImg} 
                 style={{
+                  marginTop: '-100px',
                   width: '70%', 
                   height: '70%'
                 }}/>
@@ -72,7 +73,7 @@ const MainPage = () => {
             style={{ 
               // position: 'absolute', bottom: '0', left: '0', 
               // padding: '0 auto', margin: '0 15px 20px 15px auto'}}
-              height: '200px'
+              height: '220px'
             }}>
               <Col>
                 <Link to="/signin">

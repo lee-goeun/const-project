@@ -202,11 +202,93 @@ class Signup extends React.Component {
       arrow_back_icon = <ArrowBackIosIcon onClick={this.handlePrevStep} />; 
     }
 
-
-
+    let next_button_box;
+    switch (stepIndex) {
+      case 0:
+        next_button_box = (
+              <Button 
+                className='next-button'
+                style={{
+                  backgroundColor: agree_all ? '#615EFF' : '#BDBDBD', 
+                  borderColor: agree_all ? '#615EFF' : '#BDBDBD', 
+                }}
+                  block
+                  disabled={!agree_all}
+                  onClick={this.handleNextStep}
+                  >
+                동의하고 진행하기
+              </Button>);
+        break;
+      case 1:
+        next_button_box = (
+              <Button
+                className='next-button'
+                style={{
+                  backgroundColor: email_check ? '#615EFF' : '#BDBDBD', 
+                  borderColor: email_check ? '#615EFF' : '#BDBDBD', 
+                }}
+                block
+                disabled={!email_check}
+                onClick={this.handleNextStep}
+              >계속하기</Button>); 
+        break;
+      case 2:
+        next_button_box = (
+          <Button
+            className='next-button'
+            style={{
+              backgroundColor: name_check ? '#615EFF' : '#BDBDBD', 
+              borderColor: name_check ? '#615EFF' : '#BDBDBD', 
+            }}
+            block
+            disabled={!name_check}
+            onClick={this.handleNextStep}
+          >계속하기</Button>); 
+        break;
+      case 3:
+        next_button_box = (
+          <Button
+            className='next-button'
+            style={{
+              backgroundColor: password_check ? '#615EFF' : '#BDBDBD', 
+              borderColor: password_check ? '#615EFF' : '#BDBDBD', 
+            }}
+            block
+            disabled={!password_check}
+            onClick={this.handleNextStep}
+          >계속하기</Button>); 
+        break;
+      case 4:
+        next_button_box = (
+          <Button
+            className='next-button'
+            style={{
+              backgroundColor: password_confirmed_check ? '#615EFF' : '#BDBDBD', 
+              borderColor: password_confirmed_check ? '#615EFF' : '#BDBDBD', 
+            }}
+            block
+            disabled={!password_confirmed_check}
+            onClick={this.submitSignUp}
+          >계속하기</Button>); 
+        break;
+      default:
+        next_button_box = (
+          <Link to='/signin'>
+            <Button 
+              className='next-button'
+              style={{
+                backgroundColor: '#615EFF', 
+                borderColor: '#615EFF'
+              }}
+              >
+              로그인
+            </Button>
+          </Link>);
+        break;
+    } 
 
     return  ( 
-    <Container style={{padding: '3px'}}>
+    <Container style={{padding: '0px'}}>
       <Row 
         className="align-items-start"
         style={{height:'120px', paddingTop: '30px'}}>
@@ -219,9 +301,6 @@ class Signup extends React.Component {
       </Row>
       <Row style={{textAlign: 'center', padding: '0 20px 0 20px'}}>
         <SwipeableViews index={stepIndex} onChangeIndex={this.handleChangeStep}>
-
-          
-
 
           {/* Step1 => 이용약관 동의 화면 */}
           <div style={Object.assign({})}>
@@ -297,23 +376,6 @@ class Signup extends React.Component {
                 </Col>
               </Row>
             </div>
-
-            <Row>
-              <Col>
-                <Button 
-                  className='next-button'
-                  style={{
-                    backgroundColor: agree_all ? '#615EFF' : '#BDBDBD', 
-                    borderColor: agree_all ? '#615EFF' : '#BDBDBD', 
-                  }}
-                    block
-                    disabled={!agree_all}
-                    onClick={this.handleNextStep}
-                    >
-                  동의하고 진행하기
-                </Button>
-              </Col>
-            </Row>
           </div>
           
           {/* Step2 => 이메일 입력 */}
@@ -328,29 +390,21 @@ class Signup extends React.Component {
                 >이메일을 입력해 주세요</span>
               </Col>
             </Row> 
-            <Row style={{
-              textAlign: 'left',
-            }}>
-              <Col>
-                {email_check_msg}
-              </Col>
-            </Row>
             <Row 
               style={{
                 textALign: 'center',
                 paddingTop: '10px', 
-                height: '150px'
               }}>
               <Col>
                 <div className='input-box'> 
                   <FormControl fullWidth={true}>
-                    <InputLabel style={{padding: '3px'}}>
+                    <InputLabel style={{padding: '5px 0 0 8px'}}>
                       이메일
                     </InputLabel>
                     <Input 
                       disableUnderline={true}
                       placeholder="example@mail.com"
-                      style={{padding: '0 0 0 5px'}}
+                      style={{padding: '0 0 5px 8px'}}
                       onChange={this.handleEmail}
                     >
                     </Input>
@@ -358,23 +412,9 @@ class Signup extends React.Component {
                 </div>
               </Col>
             </Row>
-            <Row
-              style={{
-                textAlign: 'center',
-                margin: '0 auto', 
-                width: '100%', 
-              }}>
-              <Col style={{padding: '0'}}>
-                <Button
-                  className='next-button'
-                  style={{
-                    backgroundColor: email_check ? '#615EFF' : '#BDBDBD', 
-                    borderColor: email_check ? '#615EFF' : '#BDBDBD', 
-                  }}
-                  block
-                  disabled={!email_check}
-                  onClick={this.handleNextStep}
-                >계속하기</Button>
+            <Row style={{textAlign: 'left'}}>
+              <Col>
+                {email_check_msg}
               </Col>
             </Row>
           </div>
@@ -393,29 +433,21 @@ class Signup extends React.Component {
                 >사용하실 이름을 입력해 주세요</span>
               </Col>
             </Row> 
-            <Row style={{
-              textAlign: 'left',
-            }}>
-              <Col>
-                {name_check_msg}
-              </Col>
-            </Row>
             <Row 
               style={{
                 textALign: 'center',
                 paddingTop: '10px', 
-                height: '150px'
               }}>
               <Col>
                 <div className='input-box'> 
                   <FormControl fullWidth={true}>
-                    <InputLabel style={{padding: '3px'}}>
+                    <InputLabel style={{padding: '5px 0 0 8px'}}>
                       이름
                     </InputLabel>
                     <Input 
                       disableUnderline={true}
                       placeholder="춤추는올빼미"
-                      style={{padding: '0 0 0 5px'}}
+                      style={{padding: '0 0 5px 8px'}}
                       onChange={this.handleName}
                     >
                     </Input>
@@ -423,23 +455,9 @@ class Signup extends React.Component {
                 </div>
               </Col>
             </Row>
-            <Row
-              style={{
-                textAlign: 'center',
-                margin: '0 auto', 
-                width: '100%', 
-              }}>
-              <Col style={{padding: '0'}}>
-                <Button
-                  className='next-button'
-                  style={{
-                    backgroundColor: name_check ? '#615EFF' : '#BDBDBD', 
-                    borderColor: name_check ? '#615EFF' : '#BDBDBD', 
-                  }}
-                  block
-                  disabled={!name_check}
-                  onClick={this.handleNextStep}
-                >계속하기</Button>
+            <Row style={{textAlign: 'left'}}>
+              <Col>
+                {name_check_msg}
               </Col>
             </Row>
           </div>
@@ -456,29 +474,21 @@ class Signup extends React.Component {
                 >비밀번호를 설정해 주세요</span>
               </Col>
             </Row> 
-            <Row style={{
-              textAlign: 'left',
-            }}>
-              <Col>
-                {password_check_msg}
-              </Col>
-            </Row>
             <Row 
               style={{
                 textALign: 'center',
                 paddingTop: '10px', 
-                height: '150px'
               }}>
               <Col>
                 <div className='input-box'> 
                   <FormControl fullWidth={true}>
-                    <InputLabel style={{padding: '3px'}}>
+                    <InputLabel style={{padding: '5px 0 0 8px'}}>
                       비밀번호
                     </InputLabel>
                     <Input 
                       disableUnderline={true}
                       type="password"
-                      style={{padding: '0 0 0 5px'}}
+                      style={{padding: '0 0 5px 8px'}}
                       onChange={this.handlePassword}
                     >
                     </Input>
@@ -486,23 +496,9 @@ class Signup extends React.Component {
                 </div>
               </Col>
             </Row>
-            <Row
-              style={{
-                textAlign: 'center',
-                margin: '0 auto', 
-                width: '100%', 
-              }}>
-              <Col style={{padding: '0'}}>
-                <Button
-                  className='next-button'
-                  style={{
-                    backgroundColor: password_check ? '#615EFF' : '#BDBDBD', 
-                    borderColor: password_check ? '#615EFF' : '#BDBDBD', 
-                  }}
-                  block
-                  disabled={!password_check}
-                  onClick={this.handleNextStep}
-                >계속하기</Button>
+            <Row style={{textAlign: 'left'}}>
+              <Col>
+                {password_check_msg}
               </Col>
             </Row>
           </div>
@@ -519,28 +515,21 @@ class Signup extends React.Component {
                 >비밀번호를 한번 더 입력해 주세요</span>
               </Col>
             </Row> 
-            <Row style={{
-              textAlign: 'left',
-            }}>
-              <Col>
-                {password_confirmed_check_msg}
-              </Col>
-            </Row>
             <Row 
               style={{
+                textALign: 'center',
                 paddingTop: '10px', 
-                height: '150px'
               }}>
               <Col>
                 <div className='input-box'> 
                   <FormControl fullWidth={true}>
-                    <InputLabel style={{padding: '3px'}}>
+                    <InputLabel style={{padding: '5px 0 0 8px'}}>
                       비밀번호
                     </InputLabel>
                     <Input 
                       disableUnderline={true}
                       type="password"
-                      style={{padding: '0 0 0 5px'}}
+                      style={{padding: '0 0 5px 8px'}}
                       onChange={this.handlePasswordConfirmed}
                     >
                     </Input>
@@ -548,23 +537,9 @@ class Signup extends React.Component {
                 </div>
               </Col>
             </Row>
-            <Row
-              style={{
-                textAlign: 'center',
-                margin: '0 auto', 
-                width: '100%', 
-              }}>
-              <Col style={{padding: '0'}}>
-                <Button
-                  className='next-button'
-                  style={{
-                    backgroundColor: password_confirmed_check ? '#615EFF' : '#BDBDBD', 
-                    borderColor: password_confirmed_check ? '#615EFF' : '#BDBDBD', 
-                  }}
-                  block
-                  disabled={!password_confirmed_check}
-                  onClick={this.submitSignUp}
-                >계속하기</Button>
+            <Row style={{textAlign: 'left'}}>
+              <Col>
+                {password_confirmed_check_msg}
               </Col>
             </Row>
           </div>
@@ -613,24 +588,13 @@ class Signup extends React.Component {
                 </Col>
               </Row>
             </div>
-            <Row>
-              <Col>
-                <Link
-                  to='/signin'>
-                  <Button 
-                    className='next-button'
-                    style={{
-                      backgroundColor: '#615EFF', 
-                      borderColor: '#615EFF'
-                    }}
-                    >
-                    로그인
-                  </Button>
-                </Link>
-              </Col>
-            </Row>
           </div>
         </SwipeableViews>
+      </Row>
+      <Row className='next-button-box'>
+        <Col>
+          {next_button_box}
+        </Col>
       </Row>
     </Container>
     );
