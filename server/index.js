@@ -76,22 +76,17 @@ app.post('/api/users/signup', (req, res) => {
 
     // Sign up
     const user = new User(req.body);
-
     user.save((err, user) => { 
         if (err) return res.json({ success: false, err })
         else { 
-            // res.cookie("x_auth", user.token).status(200).json({ 
-            //     success: true, 
-            //     userId: user._id
-            // }) 
             res.json({status: "success"})
         }
     })
 })
 
-app.post('/api/users/checkname', (req, res) => {
+app.post('/api/users/checkemail', (req, res) => {
 
-	User.findOne({name: req.body.name}, (err, user) => {
+	User.findOne({email: req.body.email}, (err, user) => {
 		if(!user) {
 			return res.json({result: false})
 		}

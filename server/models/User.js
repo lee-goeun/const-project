@@ -15,12 +15,11 @@ var UserSchema = new Schema({
     name: { 
         type: String, 
         trim: true, 
-        unique: 1, 
-        maxlength: 50
+        maxlength: 20
     }, 
     password: { 
         type: String, 
-        minlength: 5
+        minlength: 6
     },
     agree_section: {
         type: Object, 

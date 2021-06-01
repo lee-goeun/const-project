@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'; 
 
 import {Container, Row, Col, Button} from 'react-bootstrap'; 
-import logoImgLarge from 'static/img/logo_large.png'; 
+import logoImg from 'static/img/logo_img.png'; 
 // import logoImg from 'static/img/logo.png'; 
 import Anime from 'react-anime'; 
 
@@ -14,10 +14,10 @@ const MainPage = () => {
         display: 'table', 
         }}>
       <Container>
-      <Row 
+        <Row 
           className="align-items-end"
-          style={{height:'200px'}}
-          >
+          style={{height:'400px', paddingBottom: '30px'}}
+        >
           <Col md={12}>
             <Anime
               easing="easeInSine"
@@ -29,8 +29,8 @@ const MainPage = () => {
             >
               <div style={{
                 textAlign: 'left', 
-                fontSize: '19px',
-                color:'#333', 
+                fontSize: '17px',
+                color:'#000', 
                 fontWeight: 'bold'}} 
               >
                 암호화폐와 금융을 연결하다. <br/>
@@ -39,35 +39,28 @@ const MainPage = () => {
             </Anime>
           </Col>
         </Row>
-        <Row 
-        style={{height: '200px', paddingTop: '50px'}}>
-          <Col
-            className="justify-content-start">
+        <Row style={{height: '50px', paddingTop: '0px'}}>
+          <Col style={{textAlign: 'center'}}>
             <Anime
               easing="easeInSine"
               duration={1000}
               delay={2000}
               direction="normal"
-              translateY="-0px"
-              // translateX="-120px"
-              scale={[.5, 1]}
+              translateX="-32%"
+              translateY="10px"
+              scale={[1, .6]}
             >
-            <img 
-              
-              src={logoImgLarge} 
-              style={{
-                width: '70%', 
-                height: '70%', 
-                paddingRight: '11px', 
-                paddingTop: '0px'}}
-            />
+              <img 
+                src={logoImg} 
+                style={{
+                  marginTop: '-100px',
+                  width: '70%', 
+                  height: '70%'
+                }}/>
             </Anime>
           </Col>
         </Row>
-        <Row 
-          className="justify-content-center"
-          style={{ position: 'absolute', bottom: '20px', left: '0'}}>
-          <Anime
+        <Anime
             easing="easeInSine"
             duration={500}
             delay={3500}
@@ -75,40 +68,49 @@ const MainPage = () => {
             translateY="-20px"
             opacity={[0, 1]}
           >
-            <Col md={12}>
-              <Link to="/signin">
-                <Button 
-                  style={{
-                    width: '320px', 
-                    height: '50px', 
-                    color: 'white', 
-                    backgroundColor: '#615EFF', 
-                    borderColor: '#615EFF', 
-                    fontSize: '14px', 
-                    fontWeight: 'bold'}}
+            <Row 
+            className="justify-content-center align-items-end"
+            style={{ 
+              // position: 'absolute', bottom: '0', left: '0', 
+              // padding: '0 auto', margin: '0 15px 20px 15px auto'}}
+              height: '220px'
+            }}>
+              <Col>
+                <Link to="/signin">
+                  <Button 
+                    style={{
+                      width: '100%',
+                      height: '50px', 
+                      color: 'white', 
+                      backgroundColor: '#615EFF', 
+                      borderColor: '#615EFF', 
+                      fontSize: '14px', 
+                      fontWeight: 'bold'}}
                   >
-                  시작하기
-                </Button>
-              </Link>
-            </Col>
-            <Col md={12}>
-              <Link to="/signup">
-                <Button 
-                  style={{
-                    width: '320px', 
-                    height: '50px', 
-                    color: '#808080', 
-                    backgroundColor: '#fff', 
-                    borderColor: '#fff', 
-                    fontSize: '14px', 
-                    fontWeight: 'bold'}}
-                  >
-                  서비스 둘러보기
-                </Button>
-              </Link>
-            </Col>
+                    시작하기
+                  </Button>
+                </Link>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Link to="/signup">
+                  <Button 
+                    style={{
+                      width: '100%',
+                      height: '50px', 
+                      color: '#808080', 
+                      backgroundColor: '#fff', 
+                      borderColor: '#fff', 
+                      fontSize: '14px', 
+                      fontWeight: 'bold'}}
+                    >
+                    서비스 둘러보기
+                  </Button>
+                </Link>
+              </Col>
+            </Row>
           </Anime>
-        </Row>
       </Container>
     </div>
   );
