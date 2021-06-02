@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'; 
 
 import {Container, Row, Col, Button} from 'react-bootstrap'; 
-import logoImg from 'static/img/logo_img.png'; 
-// import logoImg from 'static/img/logo.png'; 
+import logoImg from 'static/img/logo_large.png'; 
 import Anime from 'react-anime'; 
 
 const MainPage = () => {

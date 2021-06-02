@@ -9,6 +9,8 @@ import { withRouter } from 'react-router';
 
 import { auth } from '_actions/user_action'; 
 
+import NavBar from 'components/NavBar';
+
 function DashboardPage(props) {
 
   const dispatch = useDispatch(); 
@@ -37,51 +39,45 @@ function DashboardPage(props) {
   }
 
   return ( 
-    <div style={{
-      width: '100%', 
-      // height: '1000px', 
-      display: 'table', 
-      }}>
-      <Container style={{padding: '20px'}}>
-        <Row 
-          className="align-items-top"
-          style={{height:'100px', textAlign: 'center'}}>
-          <Col>
-            <p style={{fontSize: '35px', color: '#4472c4'}}>
-              대시보드
-            </p>
-          </Col>
-          <Col>
-            <p>{Name}님 환영합니다.</p>
-          </Col>
-
-        </Row>
-        <Row style={{textAlign: 'left', fontSize: '18px', height: '400px'}}>
-          <Col>
-            <Button 
-              style={{
-                width: '100%', 
-                color: 'black', 
-                backgroundColor: 'white', 
-                borderColor: '#bcbcbc'}}
-              onClick={() => { history.push('/')}}
-              >
-              이전으로
-            </Button>
-            <Button 
-              style={{
-                width: '100%', 
-                color: 'white', 
-                backgroundColor: '#4472c4', 
-                borderColor: '#4472c4'}}
-              onClick={logoutHandler}
-              >
-               로그아웃
-            </Button>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    <Container>
+      <Row 
+        className="align-items-center"
+        style={{height:'100px', textAlign: 'center'}}>
+        <Col>
+          <p style={{fontSize: '35px', color: '#4472c4'}}>
+            대시보드
+          </p>
+        </Col>
+        <Col>
+          <p>{Name}님 환영합니다.</p>
+        </Col>
+      </Row>
+      <Row style={{textAlign: 'left', fontSize: '18px', height: '400px'}}>
+        <Col>
+          <Button 
+            style={{
+              width: '100%', 
+              color: 'black', 
+              backgroundColor: 'white', 
+              borderColor: '#bcbcbc'}}
+            onClick={() => { history.push('/')} }
+            >
+            이전으로
+          </Button>
+          <Button 
+            style={{
+              width: '100%', 
+              color: 'white', 
+              backgroundColor: '#4472c4', 
+              borderColor: '#4472c4'}}
+            onClick={logoutHandler}
+            >
+              로그아웃
+          </Button>
+        </Col>
+      </Row>
+      <NavBar dashboard={true} />
+    </Container>
   )
 }
 

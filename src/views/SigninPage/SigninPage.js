@@ -189,11 +189,10 @@ function SigninPage(props) {
       </Row>
 
       <Row 
+        className='align-items-end'
         style={{
-          position: 'absolute', 
           width: '100%', 
-          bottom: '50px', 
-          left: '0',
+          height: '120px',
           margin: '0 auto', 
       }}>
         <Col>

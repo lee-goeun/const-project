@@ -13,6 +13,9 @@ import MainPage from "views/MainPage/MainPage";
 import SignupPage from "views/SignupPage/SignupPage"; 
 import SigninPage from "views/SigninPage/SigninPage";  
 import DashboardPage from "views/DashboardPage/DashboardPage"; 
+import MyInfoPage from 'views/MyInfoPage/MyInfoPage';
+
+
 import Auth from './hoc/auth'; 
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReducThunk)(createStore)
@@ -30,13 +33,14 @@ class App extends React.Component {
         window.__REDUX_DEVTOOLS_EXTENSION__() 
         )} 
       >
-        <div className="App justify-content-center" style={{maxWidth: '800px', padding: '0 0 0 0', margin: '0 auto'}} >
+        <div className="App justify-content-center" style={{maxWidth: '800px', padding: '0', margin: '0 auto'}} >
           <Container style={{width: '100%'}}>
             <Switch>
               <Route exact path="/" component={Auth(MainPage, false)} /> 
               <Route path="/signup" component={Auth(SignupPage, false)} /> 
               <Route path="/signin" component={Auth(SigninPage, false)} /> 
               <Route path="/dashboard" component={Auth(DashboardPage, true)} /> 
+              <Route path="/myinfo" component={Auth(MyInfoPage, true)} /> 
             </Switch>
           </Container>
         </div>
