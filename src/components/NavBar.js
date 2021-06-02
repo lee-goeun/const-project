@@ -25,7 +25,7 @@ function NavBar(props) {
       left: '0', 
       right: '0', 
       margin: '0 auto', 
-      bottom: '30px', 
+      bottom: '0', 
       height: '60px', 
       fontSize:'10px', 
       textAlign: 'center', 
