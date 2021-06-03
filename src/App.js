@@ -33,8 +33,8 @@ class App extends React.Component {
         window.__REDUX_DEVTOOLS_EXTENSION__() 
         )} 
       >
-        <div className="App justify-content-center" style={{maxWidth: '800px', padding: '0', margin: '0 auto'}} >
-          <Container style={{width: '100%'}}>
+        <div className="App justify-content-center" style={{padding: '0', margin: '0 auto'}} >
+          <Container fluid='md'>
             <Switch>
               <Route exact path="/" component={Auth(MainPage, false)} /> 
               <Route path="/signup" component={Auth(SignupPage, false)} /> 

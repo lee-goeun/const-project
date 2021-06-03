@@ -8,10 +8,7 @@ import Anime from 'react-anime';
 const MainPage = () => {
 
   return  ( 
-    <div style={{
-        width: '100%', 
-        display: 'table', 
-        }}>
+    <div style={{display: 'table'}}>
       <Container>
         <Row 
           className="align-items-end"
