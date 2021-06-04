@@ -105,7 +105,7 @@ function MyInfoPage(props) {
           <img src={wallet_img} />
         </Col>
         <Col>
-          <span>지갑 관리</span>
+          <span>지갑 관리</span>
         </Col>
         <Col style={{textAlign: 'right'}}>
           <ArrowForwardIosIcon style={{

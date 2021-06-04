@@ -41,19 +41,19 @@ function NavBar(props) {
         <div style={{
           marginTop: '2px', 
           color: props.dashboard ? '#000' : '#828282',
-        }}>홈</div>
+        }}>홈</div>
       </Col>
       <Col>
         <img src={defi_icon} />
         <div style={{
           marginTop: '2px', 
-        }}>디파이</div>
+        }}>디파이</div>
       </Col>
       <Col>
         <img src={contents_icon} />
         <div style={{
           marginTop: '2px', 
-        }}>컨텐츠</div>
+        }}>컨텐츠</div>
       </Col>
       <Col>
         <img src={history_icon} />
