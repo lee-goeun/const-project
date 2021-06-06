@@ -48,7 +48,8 @@ function MyInfoPage(props) {
           <img src={user_default_img} />
         </Col>
         <Col style={{
-          textAlign: 'left'
+          textAlign: 'left', 
+          marginLeft: '10px'
         }}>
           <div style={{
             fontSize: '15px', 
@@ -73,7 +74,6 @@ function MyInfoPage(props) {
           }}/>
         </Col>
       </Row>
-      <Divider absolute={true} />
       <Row 
         className='align-items-center'
         style={{
@@ -100,7 +100,9 @@ function MyInfoPage(props) {
         style={{
           textAlign: 'left', 
           height: '60px'
-        }}>
+        }}
+        onClick={() => { history.push('/myinfo/wallet')}}
+        >
         <Col xs={1}>
           <img src={wallet_img} />
         </Col>

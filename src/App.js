@@ -13,8 +13,12 @@ import MainPage from "views/MainPage/MainPage";
 import SignupPage from "views/SignupPage/SignupPage"; 
 import SigninPage from "views/SigninPage/SigninPage";  
 import DashboardPage from "views/DashboardPage/DashboardPage"; 
-import MyInfoPage from 'views/MyInfoPage/MyInfoPage';
 
+import MyInfoPage from 'views/MyInfoPage/MyInfoPage';
+import MyWalletPage from 'views/MyInfoPage/MyWalletPage'; 
+
+import WalletAddMainPage from 'views/MyInfoPage/WalletAdd/WalletAddMainPage';
+import WalletImportPage from 'views/MyInfoPage/WalletAdd/WalletImportPage';
 
 import Auth from './hoc/auth'; 
 
@@ -40,7 +44,13 @@ class App extends React.Component {
               <Route path="/signup" component={Auth(SignupPage, false)} /> 
               <Route path="/signin" component={Auth(SigninPage, false)} /> 
               <Route path="/dashboard" component={Auth(DashboardPage, true)} /> 
-              <Route path="/myinfo" component={Auth(MyInfoPage, true)} /> 
+              
+              <Route exact path="/myinfo" component={Auth(MyInfoPage, true)} /> 
+              <Route exact path="/myinfo/wallet" component={Auth(MyWalletPage, true)} /> 
+
+              <Route exact path="/myinfo/wallet/new" component={Auth(WalletAddMainPage, true)} /> 
+              <Route exact path="/myinfo/wallet/import" component={Auth(WalletImportPage, true)} /> 
+
             </Switch>
           </Container>
         </div>

@@ -74,4 +74,4 @@ function NavBar(props) {
   )
 }
 
-export default withRouter(NavBar);
+export default NavBar;
