@@ -111,7 +111,7 @@ function SigninPage(props) {
                 padding: '5px 0 0 8px',
                 fontSize: '15px'
                 }}>
-                이메일
+                이메일
               </InputLabel>
               <Input 
                 disableUnderline={true}

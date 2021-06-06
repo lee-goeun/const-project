@@ -8,8 +8,8 @@ ENV PATH /app/node_modules/.bin:$PATH
 COPY . /app
 
 RUN npm install --silent
-# RUN npm install nodemon -g --silent 
-# RUN npm install npm-run-all -g --silent
+RUN npm install nodemon -g --silent 
+RUN npm install npm-run-all -g --silent
 RUN npm audit fix
 
 # RUN npm rebuild bcrypt --build-from-source

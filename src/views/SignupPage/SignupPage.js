@@ -315,7 +315,7 @@ class Signup extends React.Component {
                     fontSize: '19px',
                     fontWeight: 'bold'
                   }}
-                >약관을 확인해 주세요</span>
+                >약관을 확인해 주세요</span>
               </Col>
             </Row>
             <div
@@ -350,7 +350,7 @@ class Signup extends React.Component {
                     color: agree_clause_essential ? '#615EFF' : '#ccc'}} />
                 </Col>
                 <Col>
-                  <span style={{fontSize: '12px'}}>이용약관 (필수)</span>
+                  <span style={{fontSize: '12px'}}>이용약관 (필수)</span>
                 </Col>
                 <Col xs="1">
                   <KeyboardArrowDownIcon />
@@ -369,7 +369,7 @@ class Signup extends React.Component {
                     color: agree_collect_personalinfo_essential ? '#615EFF' : '#ccc'}} />
                 </Col>
                 <Col style={{paddingRight: '0'}}>
-                  <span style={{fontSize: '12px'}}>개인정보 및 필수 항목에 대한 처리 및 이용 (필수)</span>
+                  <span style={{fontSize: '12px'}}>개인정보 및 필수 항목에 대한 처리 및 이용 (필수)</span>
                 </Col>
                 <Col xs="1">
                   <KeyboardArrowDownIcon />
@@ -557,7 +557,7 @@ class Signup extends React.Component {
                     fontSize: '19px',
                     fontWeight: 'bold'
                   }}
-                >회원가입 완료</span>
+                >회원가입 완료</span>
               </Col>
             </Row>
             <div
@@ -574,7 +574,7 @@ class Signup extends React.Component {
                   textAlign: 'left'
               }}>
                 <Col>
-                  <span style={{fontSize: '13px'}}>회원가입이 완료되었습니다.</span>
+                  <span style={{fontSize: '13px'}}>회원가입이 완료되었습니다.</span>
                 </Col>
               </Row>
               <Row 
@@ -584,7 +584,7 @@ class Signup extends React.Component {
                   textAlign: 'left'
               }}>
                 <Col style={{paddingRight: '0'}}>
-                  <span style={{fontSize: '13px'}}>이제 클링크를 이용하실 수 있습니다.</span>
+                  <span style={{fontSize: '13px'}}>이제 클링크를 이용하실 수 있습니다.</span>
                 </Col>
               </Row>
             </div>
