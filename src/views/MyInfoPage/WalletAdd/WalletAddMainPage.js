@@ -38,7 +38,7 @@ function WalletAddMainPage(props) {
           <div 
             className='align-items-center'
             style={{
-            border: '0.5px solid #F2F2F2',  
+            border: '1px solid #F2F2F2',  
             borderRadius: '5px', 
           }}>
             <p style={{
@@ -59,7 +59,7 @@ function WalletAddMainPage(props) {
           <div 
             className='align-items-center'
             style={{
-            border: '0.5px solid #F2F2F2',  
+            border: '1px solid #F2F2F2',  
             borderRadius: '5px', 
           }}>
             <p style={{

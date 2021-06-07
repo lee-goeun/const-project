@@ -11,14 +11,13 @@ import { withRouter } from 'react-router';
 import { auth } from '_actions/user_action'; 
 import NavBar from 'components/NavBar';
 
-import './walletadd_page.css'
+import './wallet_add_page.css'
 
 import { 
   FormControl, 
   InputLabel,
   Select, 
   Input,
-  TextField,
   MenuItem
 
 } from '@material-ui/core'
@@ -84,28 +83,25 @@ function WalletImportPage(props) {
 
   const onSubmitHandler = (event) => { 
     event.preventDefault(); 
-    console.log('test')
 
     let data = {
       user_id: userId, 
-      network_type: networkType, 
-      address_name: addressName, 
+      atype: networkType, 
+      nick_name: addressName, 
       address
     };
-    console.log(data); 
 
-    // axios.post('/api/wallet/import', data)
-    //   .then( (res) => { 
-    //     if (res.result === 'success') { 
-    //       alert('success')
-    //       history.push('/dashboard')
-    //     } 
-    //   })
-    //   .catch( (err) => {
-    //     alert(err); 
-    //   })
-    alert('아무튼 지갑 생성 되었음^^'); 
-    history.push('/myinfo/wallet'); 
+    axios.post('/api/wallets/import', data)
+      .then( (res) => { 
+        console.log(res); 
+        if (res.data.status) { 
+          alert('지갑이 성공적으로 추가되었습니다')
+          history.push('/myinfo/wallet')
+        } else { 
+          alert(`err occuered: ${res.data.msg}`)
+        }
+      })
+      .catch( (err) => {alert(err); })
   }
 
 
@@ -150,6 +146,7 @@ function WalletImportPage(props) {
               onChange={onNetworkTypeHandler}
               value={networkType}
             >
+              <MenuItem style={{margin: '8px'}} value='Klaytn'>Klaytn</MenuItem>
               <MenuItem style={{margin: '8px'}} value='Ethereum'>Ethereum</MenuItem>
               <MenuItem style={{margin: '8px'}} value='BSC'>BSC</MenuItem>
               <MenuItem style={{margin: '8px'}} value='Polygon'>Polygon</MenuItem>
@@ -171,11 +168,10 @@ function WalletImportPage(props) {
               <InputLabel 
                 id='address-label'
                 style={{
-                color:'#F2F2F2', 
-                padding: '5px 0 0 8px', 
-                fontSize: '15px'
-                }}>
-                지갑 주소
+                  color: '#828282', 
+                  padding: '5px 0 0 8px', 
+                  fontSize: '15px'
+                }}>지갑 주소
               </InputLabel>
               <Input 
                 labelId='address-label'
@@ -184,7 +180,6 @@ function WalletImportPage(props) {
                 placeholder="지갑 주소"
                 style={{padding: '0 0 5px 8px'}}
                 onChange={onAddressHandler}
-                value={address}
               >
               </Input>
             </FormControl>
@@ -209,20 +204,18 @@ function WalletImportPage(props) {
               <InputLabel 
                 id='address-name-label'
                 style={{
-                color:'#F2F2F2', 
-                padding: '5px 0 0 8px', 
-                fontSize: '15px'
-                }}>
-                지갑 별명
+                  color: '#828282', 
+                  padding: '5px 0 0 8px', 
+                  fontSize: '15px'
+                }}>지갑 별명
               </InputLabel>
               <Input 
                 labelId='address-name-label'
                 id='address-name-input'
                 disableUnderline={true}
                 placeholder="지갑 별명"
-                style={{padding: '0 0 5px 8px'}}
+                style={{padding: '0 0 2px 8px'}}
                 onChange={onAddressNameHandler}
-                value={addressName}
               >
               </Input>
             </FormControl>

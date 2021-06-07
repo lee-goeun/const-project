@@ -67,15 +67,13 @@ function MyWalletPage(props) {
   const dispatch = useDispatch(); 
   const history = useHistory(); 
 
-  const [userName, setUserName] = useState(''); 
-  const [userEmail, setUserEmail] = useState(''); 
+  const [userId, setUserId] = useState(''); 
 
   React.useEffect(() => { 
     dispatch(auth()).then(res => { 
       if (res.payload.hasOwnProperty('name')) { 
-        const { name, email } = res.payload; 
-        setUserName(name);
-        setUserEmail(email); 
+        const { _id } = res.payload; 
+        setUserId(_id);
       }
     })
   }, [])
@@ -125,11 +123,12 @@ function MyWalletPage(props) {
               scrollButtons="on"
             >
               <Tab label="All chains" {...a11yProps(0)} />
-              <Tab label="Ethurieum" {...a11yProps(1)} />
-              <Tab label="BSC" {...a11yProps(2)} />
-              <Tab label="Polygon" {...a11yProps(3)} />
-              <Tab label="Terra" {...a11yProps(4)} />
-              <Tab label="Tron" {...a11yProps(5)} />
+              <Tab label="Klaytn" {...a11yProps(1)} />
+              <Tab label="Ethurieum" {...a11yProps(2)} />
+              <Tab label="BSC" {...a11yProps(3)} />
+              <Tab label="Polygon" {...a11yProps(4)} />
+              <Tab label="Terra" {...a11yProps(5)} />
+              <Tab label="Tron" {...a11yProps(6)} />
             </Tabs>
           </AppBar>
           <Divider />
@@ -145,11 +144,12 @@ function MyWalletPage(props) {
                 fontWeight: 'bold' 
               }}>등록된 지갑</span>
             </TabPanel>
-            <TabPanel value={cardIndex} index={1}>ETH</TabPanel>
-            <TabPanel value={cardIndex} index={2}>BSC</TabPanel>
-            <TabPanel value={cardIndex} index={3}>POLYGON</TabPanel>
-            <TabPanel value={cardIndex} index={4}>TERRA</TabPanel>
-            <TabPanel value={cardIndex} index={5}>TRON</TabPanel>
+            <TabPanel value={cardIndex} index={1}>Klaytn</TabPanel>
+            <TabPanel value={cardIndex} index={2}>ETH</TabPanel>
+            <TabPanel value={cardIndex} index={3}>BSC</TabPanel>
+            <TabPanel value={cardIndex} index={4}>POLYGON</TabPanel>
+            <TabPanel value={cardIndex} index={5}>TERRA</TabPanel>
+            <TabPanel value={cardIndex} index={6}>TRON</TabPanel>
           </SwipeableViews>
         </Col>
       </Row>
