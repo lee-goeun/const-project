@@ -80,7 +80,9 @@ function MyInfoPage(props) {
         textAlign: 'left', 
         marginTop: '20px',
         height: '60px'
-      }}>
+      }}
+        onClick={() => { history.push('/myinfo/loginsetting')}}
+      >
         <Col xs={1}>
           <img src={private_management_img} />
         </Col>
