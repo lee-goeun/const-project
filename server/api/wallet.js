@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const { Wallet } = require('../models/Wallet'); 
+const { KlaytnBalanceWallet } = require('./smart_contract/klaytn'); 
 
 router.get('/:user_id', (req, res) => { 
 
@@ -28,6 +29,23 @@ router.post('/import', (req, res) => {
         }
     })
 
+})
+
+router.post('/balance', (req, res) => { 
+    const { address, atype } = req.body; 
+
+    switch (atype) {
+        case "KLAY":
+            KlaytnBalanceWallet(address)
+            .then((result => { 
+                res.json({status: true, result})
+            }))
+            break;
+    
+        default:
+            res.json({status: false, 'msg': 'wrong atype variable'})
+            break;
+    }
 })
 
 

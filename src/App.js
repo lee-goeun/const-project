@@ -11,9 +11,10 @@ import Reducer from './_reducers';
 
 import MainPage from "views/MainPage/MainPage"; 
 import SignupPage from "views/SignupPage/SignupPage"; 
-import SigninPage from "views/SigninPage/SigninPage";  
-import DashboardPage from "views/DashboardPage/DashboardPage"; 
+import SigninPage from "views/SigninPage/SigninPage"; 
 
+import DashboardPage from "views/DashboardPage/DashboardPage"; 
+import ContentsPage from 'views/ContentsPage/ContentsPage';
 import MyInfoPage from 'views/MyInfoPage/MyInfoPage';
 import MyWalletPage from 'views/MyInfoPage/MyWalletPage'; 
 import LoginSetupPage from 'views/MyInfoPage/LoginSetupPage'; 
@@ -45,6 +46,8 @@ class App extends React.Component {
               <Route path="/signup" component={Auth(SignupPage, false)} /> 
               <Route path="/signin" component={Auth(SigninPage, false)} /> 
               <Route path="/dashboard" component={Auth(DashboardPage, true)} /> 
+
+              <Route path="/contents" component={Auth(ContentsPage, true)} />
               
               <Route exact path="/myinfo" component={Auth(MyInfoPage, true)} /> 
               <Route exact path="/myinfo/wallet" component={Auth(MyWalletPage, true)} /> 

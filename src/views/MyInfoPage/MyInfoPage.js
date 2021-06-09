@@ -63,8 +63,9 @@ function MyInfoPage(props) {
       </Row>
       <Row style={{
         position: 'absolute', 
-        left: '0', 
-        width: '150%'
+        left: '0', right: '0', 
+        margin: '0 auto',
+        width: '100%'
         }}>
         <Col>
           <div style={{
@@ -109,7 +110,7 @@ function MyInfoPage(props) {
           <img src={wallet_img} />
         </Col>
         <Col>
-          <span>지갑 관리</span>
+          <span>지갑 관리</span>
         </Col>
         <Col style={{textAlign: 'right'}}>
           <ArrowForwardIosIcon style={{

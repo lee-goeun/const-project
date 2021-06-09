@@ -54,10 +54,10 @@ mongoose.connect(DB_URI, {
 
 
 var userRouter = require('./api/user');
-app.use('/api/users', userRouter);
+app.use('/api/user', userRouter);
 
 var walletRouter = require('./api/wallet'); 
-app.use('/api/wallets', walletRouter)
+app.use('/api/wallet', walletRouter)
 
 
 

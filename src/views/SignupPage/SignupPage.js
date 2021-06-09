@@ -70,7 +70,7 @@ class Signup extends React.Component {
 
     // TODO: 이메일 형식 확인(Regular Expression)
 
-    axios.post('/api/users/checkemail', {email})
+    axios.post('/api/user/checkemail', {email})
       .then(res => {
         if(!res.data.result) { // 사용가능한 이름
           this.setState({email_check: true, email: email})
@@ -129,7 +129,7 @@ class Signup extends React.Component {
 
     const user_data = {email, name, password, agree_section}; 
 
-    axios.post('/api/users/signup', user_data)
+    axios.post('/api/user/signup', user_data)
       .then(res => { 
         if (res.data.status === "success") { 
           this.handleNextStep(); 

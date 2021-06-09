@@ -7,7 +7,7 @@ import {
 
 export function signinUser(dataToSubmit) { 
 
-	const request = axios.post('/api/users/signin', dataToSubmit)
+	const request = axios.post('/api/user/signin', dataToSubmit)
 		.then(response => response.data)
 	
 	return { 
@@ -18,7 +18,7 @@ export function signinUser(dataToSubmit) {
 
 export function signupUser(dataToSubmit) { 
 
-	const request = axios.post('/api/users/signup', dataToSubmit)
+	const request = axios.post('/api/user/signup', dataToSubmit)
 		.then(response => response.data)
 	
 	return { 
@@ -28,7 +28,7 @@ export function signupUser(dataToSubmit) {
 }
 
 export function auth() { 
-	const request = axios.get('/api/users/auth')
+	const request = axios.get('/api/user/auth')
 		.then(response => response.data)
 	return { 
 		type: AUTH_USER, 

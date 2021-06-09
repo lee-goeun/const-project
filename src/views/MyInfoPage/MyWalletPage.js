@@ -24,6 +24,9 @@ import {
 
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
+import etu_token_img from 'static/img/token_icon/eth_token.png'; 
+import klaytn_img from 'static/img/token_icon/klaytn_logo.png'; 
+import venus_img from 'static/img/token_icon/venus_logo.png'; 
 
 
 function a11yProps(index) {
@@ -62,25 +65,97 @@ TabPanel.propTypes = {
 };
 
 
+const ImportedBox = (
+  <div>
+
+    <span style={{
+      borderRadius: '5px', 
+      border: '1px solid #F2F2F2',
+      width: '100%', 
+      fontSize: '12px', 
+      padding: '5px'
+    }}>
+      imported
+    </span>
+
+  </div>
+
+  
+);
+
+function addressParsing(addr) { return addr.slice(0, 6) + '....' + addr.slice(-5) }
+
+
 function MyWalletPage(props) {
 
   const dispatch = useDispatch(); 
   const history = useHistory(); 
 
-  const [userId, setUserId] = useState(''); 
+  const [klaytnWallet, setKlaytnWallet] = useState(undefined); 
+  // const [venustnWallet, setVenusWallet] = useState([]); 
+  const [cardIndex, setCardIndex] = useState(0); 
 
   React.useEffect(() => { 
     dispatch(auth()).then(res => { 
-      if (res.payload.hasOwnProperty('name')) { 
+      if (res.payload) { 
         const { _id } = res.payload; 
-        setUserId(_id);
+        axios.get(`/api/wallet/${_id}`).then((res) => { 
+          const {wallets} = res.data; 
+          let klaytn_wallet = []; 
+
+          wallets.forEach(wallet => {
+            if (wallet.atype === 'Klaytn') klaytn_wallet.push(wallet) 
+          });
+          
+
+          let klaytn_wallet_jsx = klaytn_wallet.map(wallet => { 
+            return (
+              <Row 
+                key={wallet.address} 
+                className='align-items-center'
+                style={{
+                  height: '30px'
+                }}
+              >
+                <Col style={{fontSize: '13px', textDecoration: 'underline'}}>
+                  {addressParsing(wallet.address)}
+                </Col>
+                <Col style={{textAlign: 'right', padding: '0 15px 5px 0'}}>
+                  {/* {wallet.new ? 'new' : 'imported'} */}
+                  {ImportedBox}
+                </Col>
+              </Row>
+            );
+          })
+          setKlaytnWallet(klaytn_wallet_jsx);
+        })
       }
     })
   }, [])
 
 
-  const [cardIndex, setCardIndex] = useState(0); 
   const handleCardIndexChange = (_, newIndex) => { setCardIndex(newIndex); };
+
+  
+
+  const klaytn_section = (
+    <>
+      <Row style={{height: '50px'}}>
+        <Col xs={1}>
+          <img src={klaytn_img} /> 
+        </Col>
+        <Col>
+          <span style={{fontSize: '15px', fontWeight: 'bold'}}>
+            Klaytn
+          </span>
+        </Col>
+      </Row>
+      {klaytnWallet}
+      <Row style={{height: '20px'}}></Row>
+    </>
+  )
+
+
 
   return ( 
     <Container style={{padding: '0'}}>
@@ -124,11 +199,12 @@ function MyWalletPage(props) {
             >
               <Tab label="All chains" {...a11yProps(0)} />
               <Tab label="Klaytn" {...a11yProps(1)} />
-              <Tab label="Ethurieum" {...a11yProps(2)} />
-              <Tab label="BSC" {...a11yProps(3)} />
-              <Tab label="Polygon" {...a11yProps(4)} />
-              <Tab label="Terra" {...a11yProps(5)} />
-              <Tab label="Tron" {...a11yProps(6)} />
+              <Tab label="Venus" {...a11yProps(2)}  />
+              <Tab label="ETH" {...a11yProps(3)} disabled/>
+              <Tab label="BSC" {...a11yProps(4)} disabled/>
+              <Tab label="Polygon" {...a11yProps(5)} disabled />
+              <Tab label="Terra" {...a11yProps(6)} disabled />
+              <Tab label="Tron" {...a11yProps(7)} disabled />
             </Tabs>
           </AppBar>
           <Divider />
@@ -139,17 +215,29 @@ function MyWalletPage(props) {
             style={{margin: '0px'}}
           >
             <TabPanel value={cardIndex} index={0}>
-              <span style={{
-                fontSize: '15px', 
-                fontWeight: 'bold' 
-              }}>등록된 지갑</span>
+              <div>
+                <Row style={{height: '50px'}}>
+                  <Col>
+                    <span style={{
+                      fontSize: '15px', 
+                      fontWeight: 'bold' 
+                    }}>등록된 지갑</span>
+                  </Col>
+                </Row>
+
+                {klaytnWallet && klaytn_section}
+                {klaytnWallet && <Divider />}
+              </div>
             </TabPanel>
-            <TabPanel value={cardIndex} index={1}>Klaytn</TabPanel>
-            <TabPanel value={cardIndex} index={2}>ETH</TabPanel>
-            <TabPanel value={cardIndex} index={3}>BSC</TabPanel>
-            <TabPanel value={cardIndex} index={4}>POLYGON</TabPanel>
-            <TabPanel value={cardIndex} index={5}>TERRA</TabPanel>
-            <TabPanel value={cardIndex} index={6}>TRON</TabPanel>
+            <TabPanel value={cardIndex} index={1}>
+              {klaytnWallet && klaytn_section}
+            </TabPanel>
+            <TabPanel value={cardIndex} index={2}>Venus</TabPanel>
+            <TabPanel value={cardIndex} index={3}>ETH</TabPanel>
+            <TabPanel value={cardIndex} index={4}>BSC</TabPanel>
+            <TabPanel value={cardIndex} index={5}>POLYGON</TabPanel>
+            <TabPanel value={cardIndex} index={6}>TERRA</TabPanel>
+            <TabPanel value={cardIndex} index={7}>TRON</TabPanel>
           </SwipeableViews>
         </Col>
       </Row>

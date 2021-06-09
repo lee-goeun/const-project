@@ -49,10 +49,13 @@ function NavBar(props) {
           marginTop: '2px', 
         }}>디파이</div>
       </Col>
-      <Col>
-        <img src={contents_icon} />
+      <Col onClick={() => { history.push('/contents') }}>
+        <img src={contents_icon} style={{
+          filter: props.contents ? selectColorFilter : ''
+        }}/>
         <div style={{
           marginTop: '2px', 
+          color: props.contents ? '#000' : '#828282',
         }}>컨텐츠</div>
       </Col>
       <Col>
