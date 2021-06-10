@@ -26,6 +26,7 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 import etu_token_img from 'static/img/token_icon/eth_token.png'; 
 import klaytn_img from 'static/img/token_icon/klaytn_logo.png'; 
+import bsc_img from 'static/img/token_icon/bsc_logo.png'; 
 import venus_img from 'static/img/token_icon/venus_logo.png'; 
 
 
@@ -92,7 +93,7 @@ function MyWalletPage(props) {
   const history = useHistory(); 
 
   const [klaytnWallet, setKlaytnWallet] = useState(undefined); 
-  // const [venustnWallet, setVenusWallet] = useState([]); 
+  const [BSCWallet, setBSCWallet] = useState(undefined); 
   const [cardIndex, setCardIndex] = useState(0); 
 
   React.useEffect(() => { 
@@ -102,9 +103,11 @@ function MyWalletPage(props) {
         axios.get(`/api/wallet/${_id}`).then((res) => { 
           const {wallets} = res.data; 
           let klaytn_wallet = []; 
+          let bsc_wallet = []; 
 
           wallets.forEach(wallet => {
             if (wallet.atype === 'Klaytn') klaytn_wallet.push(wallet) 
+            else if (wallet.atype === 'BSC') bsc_wallet.push(wallet)
           });
           
 
@@ -128,6 +131,27 @@ function MyWalletPage(props) {
             );
           })
           setKlaytnWallet(klaytn_wallet_jsx);
+
+          let bsc_wallet_jsx = bsc_wallet.map(wallet => { 
+            return (
+              <Row 
+                key={wallet.address} 
+                className='align-items-center'
+                style={{
+                  height: '30px'
+                }}
+              >
+                <Col style={{fontSize: '13px', textDecoration: 'underline'}}>
+                  {addressParsing(wallet.address)}
+                </Col>
+                <Col style={{textAlign: 'right', padding: '0 15px 5px 0'}}>
+                  {/* {wallet.new ? 'new' : 'imported'} */}
+                  {ImportedBox}
+                </Col>
+              </Row>
+            );
+          })
+          setBSCWallet(bsc_wallet_jsx);
         })
       }
     })
@@ -151,6 +175,23 @@ function MyWalletPage(props) {
         </Col>
       </Row>
       {klaytnWallet}
+      <Row style={{height: '20px'}}></Row>
+    </>
+  )
+
+  const bsc_section = (
+    <>
+      <Row style={{height: '50px'}}>
+        <Col xs={1}>
+          <img src={bsc_img} /> 
+        </Col>
+        <Col>
+          <span style={{fontSize: '15px', fontWeight: 'bold'}}>
+            Binance Smart Chain
+          </span>
+        </Col>
+      </Row>
+      {BSCWallet}
       <Row style={{height: '20px'}}></Row>
     </>
   )
@@ -227,12 +268,16 @@ function MyWalletPage(props) {
 
                 {klaytnWallet && klaytn_section}
                 {klaytnWallet && <Divider />}
+                {BSCWallet && <div style={{height: '20px'}}></div>}
+                {BSCWallet && bsc_section}
               </div>
             </TabPanel>
             <TabPanel value={cardIndex} index={1}>
               {klaytnWallet && klaytn_section}
             </TabPanel>
-            <TabPanel value={cardIndex} index={2}>Venus</TabPanel>
+            <TabPanel value={cardIndex} index={2}>
+              {BSCWallet && bsc_section}
+            </TabPanel>
             <TabPanel value={cardIndex} index={3}>ETH</TabPanel>
             <TabPanel value={cardIndex} index={4}>BSC</TabPanel>
             <TabPanel value={cardIndex} index={5}>POLYGON</TabPanel>

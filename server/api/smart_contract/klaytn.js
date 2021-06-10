@@ -11,9 +11,12 @@
 
 const CaverExtKAS = require('caver-js-ext-kas');
 const caver = new CaverExtKAS();
+const accessKeyId = "KASKQO63SLJW75Q0FJB61B4N"; 
+const secretAccessKey = "QAXbYjYlXCf5BAgax7Dm-C0j-kk8RRcW0yfJYNcH"
 //메인넷은 8217, 테스트넷은 1001
 //KAS console을 사용하기위한 access key 입니다. => 트랜잭션 보내는게 무료(하루에 10000번까지)
-caver.initKASAPI(8217, "KASKBDIFAXVXK14IEVRJDFVS","xW5VfL4rS6lOuEENPBs5jt0UeVDYMxgRIA14EAoS");
+// caver.initKASAPI(8217, "KASKBDIFAXVXK14IEVRJDFVS","xW5VfL4rS6lOuEENPBs5jt0UeVDYMxgRIA14EAoS");
+caver.initKASAPI(8217, accessKeyId, secretAccessKey); 
 
 
 //decode 함수 사용하기 위해 web3js import

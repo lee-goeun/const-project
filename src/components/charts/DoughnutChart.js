@@ -1,36 +1,80 @@
 import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 
-const data = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  datasets: [
-    {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
-
 function DoughnutChart(props) { 
+
+  const tokens = props.data; 
+
+  let labels = [];
+  let values = [];
+  if (tokens) {
+    for (const [key, value] of Object.entries(tokens)) {
+      labels.push(key); 
+      values.push(value.token_balance); 
+    }
+  } else{ 
+    // labels = ['1','2','3','4'];
+    // values = [1, 2, 3, 4]; 
+  }
+
+  let data = {
+    labels: labels, 
+    datasets: [
+      {
+        data: values, 
+        backgroundColor: [
+          '#8EB2FF',
+          '#6B69F7',
+          '#B095FF',
+          '#D2D2D2'
+        ], 
+        borderWidth: 1,
+        legend: { 
+          display: true, 
+          position: 'right'
+        },
+        options: {
+          gridLines: {
+            display: false,
+            drawOnChartArea: false
+          }, 
+          legend: { 
+            display: true, 
+            position: 'right'
+          }
+        }
+      }
+    ]
+  }
+
   return (
-    <Doughnut data={data} />
+    <Doughnut 
+      data={data}
+      legend={{
+        display: true, 
+        position: 'right', 
+        generateLabels: function(chart) {
+          let data = chart.data;
+          if (data.labels.length) {
+            return data.labels.map(function(label, i) {
+              let ds = data.datasets[0];
+                return {
+                text: `${label}: ${ds.data[i]}`,
+                index: i
+              };
+            })
+          }
+          return [];
+        }
+      }}
+
+      options={{
+        legend: {
+          display: true,
+          position: 'right'}
+      }}
+
+    />
   )
 }
 

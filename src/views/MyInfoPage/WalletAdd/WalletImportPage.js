@@ -91,7 +91,7 @@ function WalletImportPage(props) {
       address
     };
 
-    axios.post('/api/import', data)
+    axios.post('/api/wallet/import', data)
       .then( (res) => { 
         console.log(res); 
         if (res.data.status) { 

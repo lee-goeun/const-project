@@ -13,8 +13,11 @@ import PropTypes from 'prop-types';
 import { auth } from '_actions/user_action'; 
 
 import NavBar from 'components/NavBar';
+import WalletInfo from './WalletInfo';
+import LendingInfo from './LendingInfo'; 
+
 import LineChart from 'components/charts/LineChart'; 
-import DoughnutChart from 'components/charts/DoughnutChart'; 
+// import DoughnutChart from 'components/charts/DoughnutChart'; 
 
 import { 
   FormControl, 
@@ -76,14 +79,42 @@ function DashboardPage(props) {
   const history = useHistory(); 
 
   const [userInfo, setUserInfo] = useState({});
-  const [cardIndex, setCardIndex] = useState(0); 
+  const [KlayBalance, setKlayBalance] = useState({}); 
+  const [BSCBalance, setBSCBalance] = useState({}); 
+  const [BSCLending, setBSCLending] = useState({}); 
+
+  const [cardIndex, setCardIndex] = useState(1); 
+  const [networkType, setNetworkType] = useState('All'); 
 
   const handleCardIndexChange = (_, newIndex) => { setCardIndex(newIndex) }; 
+  const onNetworkTypeHandler = (_, newType) => { setNetworkType(newType) }; 
 
   React.useEffect(() => { 
     dispatch(auth()).then(res => { 
       if (res.payload) { 
         setUserInfo(res.payload); 
+        axios.get(`/api/wallet/${res.payload._id}`)
+          .then((res) => { 
+            res.data.wallets.forEach(wallet => {
+              const {address, atype} = wallet;
+              if (atype == 'Klaytn') { 
+                axios.post('/api/wallet/balance', {address, atype})
+                  .then((res) => { 
+                    setKlayBalance(res.data.result); 
+                  })
+                // setKlayWallet(wallet)
+              } else if (atype == 'BSC') { 
+                axios.post('/api/wallet/balance', {address, atype})
+                  .then( (res) => { 
+                    setBSCBalance(res.data.result); 
+                  })
+                axios.post('/api/wallet/lending', {address, atype})
+                  .then( (res) => { 
+                    setBSCLending(res.data.result); 
+                  })
+                }
+            });
+          })
       }
     })
   }, [])
@@ -108,8 +139,8 @@ function DashboardPage(props) {
         }}>
           <FormControl variant="outlined" fullWidth={true}>
             <Select
-              // onChange={onNetworkTypeHandler}
-              // value={networkType}
+              onChange={onNetworkTypeHandler}
+              value={networkType}
               style={{
                 textAlign: 'left', 
                 height: '40px', 
@@ -146,9 +177,11 @@ function DashboardPage(props) {
               variant="scrollable"
               scrollButtons="on"
             >
-              <Tab label="All chains" {...a11yProps(0)} />
-              <Tab label="Klaytn" {...a11yProps(1)} />
-              <Tab label="Venus" {...a11yProps(2)}  />
+              <Tab label="전체" disabled {...a11yProps(0)} />
+              <Tab label="지갑" {...a11yProps(1)} />
+              <Tab label="랜딩" {...a11yProps(2)}  />
+              <Tab label="파밍" disabled {...a11yProps(2)}  />
+              <Tab label="예금" disabled {...a11yProps(2)}  />
             </Tabs>
           </AppBar>
           <Divider />
@@ -159,13 +192,37 @@ function DashboardPage(props) {
             style={{margin: '0px'}}
           >
             <TabPanel value={cardIndex} index={0}>
-              <LineChart /> 
-              <DoughnutChart />
+              전체
             </TabPanel>
-            <TabPanel value={cardIndex} index={1}>ETH</TabPanel>
-            <TabPanel value={cardIndex} index={2}>BSC</TabPanel>
-            <TabPanel value={cardIndex} index={3}>BSC2</TabPanel>
-            <TabPanel value={cardIndex} index={4}>BSC3</TabPanel>
+            <TabPanel value={cardIndex} index={1}>
+              <div style={{
+                border: '1px solid #F2F2F2',  
+                borderRadius: '5px', 
+                marginBottom: '50px'
+              }}>
+                <div style={{
+                  padding: '5px', 
+                  fontSize: '14px', 
+                }}>지갑 총액</div>
+                <div style={{
+                  padding: '5px', 
+                  fontSize: '12px'
+                }}>₩ 10,000,000</div>
+                <LineChart /> 
+              </div>
+              <div style={{height: '400px'}}>
+                { KlayBalance &&
+                  <WalletInfo balance={KlayBalance} atype='Klaytn' /> }
+                { BSCBalance && 
+                  <WalletInfo balance={BSCBalance} atype='BSC' /> }
+              </div>
+            </TabPanel>
+            <TabPanel value={cardIndex} index={2}>
+              {BSCLending && 
+                <LendingInfo lending={BSCLending} /> }
+            </TabPanel>
+            <TabPanel value={cardIndex} index={3}>파밍</TabPanel>
+            <TabPanel value={cardIndex} index={4}>예금</TabPanel>
           </SwipeableViews>
         </Col>
       </Row>

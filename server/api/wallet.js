@@ -3,6 +3,9 @@ var router = express.Router();
 
 const { Wallet } = require('../models/Wallet'); 
 const { KlaytnBalanceWallet } = require('./smart_contract/klaytn'); 
+const { BSCBalanceWallet } = require('./smart_contract/bsc');
+const { BSCLending } = require('./smart_contract/bsc_lending'); 
+
 
 router.get('/:user_id', (req, res) => { 
 
@@ -14,9 +17,9 @@ router.get('/:user_id', (req, res) => {
 
 router.post('/import', (req, res) => { 
 
-    const {user_id, address} = req.body; 
+    const {user_id, address, atype} = req.body; 
 
-    Wallet.findOne({user_id, address}, (err, wallet) => {
+    Wallet.findOne({user_id, address, atype}, (err, wallet) => {
 
         if (err) return res.json({status: false, err })
         if (wallet) { res.json({status: false, msg: 'duplicated wallet'})}
@@ -31,12 +34,43 @@ router.post('/import', (req, res) => {
 
 })
 
+router.post('/balanceAll', (req, res) => { 
+    const { user_id } = req.body; 
+    Wallet.find({user_id}, (err, wallets) => { 
+
+        // wallets.forEach(wallet => {
+        //     const {address, atype} = wallet; 
+
+        //     switch (atype) {
+        //         case "KLAY":
+        //             KlaytnBalanceWallet(address)
+        //             .then((result => { 
+        //                 res.json({status: true, result})
+        //             }))
+        //             break;
+        //         default:
+        //             res.json({status: false, 'msg': 'unexpected error'})
+        //             break;
+        //     }
+        // });
+        res.json({status: true, result: wallets})
+    })
+})
+
 router.post('/balance', (req, res) => { 
     const { address, atype } = req.body; 
+    console.log(req.body)
 
     switch (atype) {
-        case "KLAY":
+        case "Klaytn":
             KlaytnBalanceWallet(address)
+            .then((result => { 
+                res.json({status: true, result})
+            }))
+            break;
+        
+        case "BSC": 
+            BSCBalanceWallet(address)
             .then((result => { 
                 res.json({status: true, result})
             }))
@@ -48,5 +82,23 @@ router.post('/balance', (req, res) => {
     }
 })
 
+
+router.post('/lending', (req, res) => {
+    const { address, atype } = req.body; 
+    console.log(req.body) 
+
+    switch (atype) { 
+        case "BSC": 
+            BSCLending(address)
+            .then((result => { 
+                res.json({status: true, result})
+            }))
+            break;
+    
+        default:
+            res.json({status: false, 'msg': 'wrong atype variable'})
+            break;
+    }
+})
 
 module.exports = router;
