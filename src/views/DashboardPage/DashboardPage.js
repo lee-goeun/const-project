@@ -192,7 +192,9 @@ function DashboardPage(props) {
             style={{margin: '0px'}}
           >
             <TabPanel value={cardIndex} index={0}>
-              전체
+              <div style={{height: '1080px'}}>
+                전체
+              </div>
             </TabPanel>
             <TabPanel value={cardIndex} index={1}>
               <div style={{
@@ -210,7 +212,7 @@ function DashboardPage(props) {
                 }}>₩ 10,000,000</div>
                 <LineChart /> 
               </div>
-              <div style={{height: '400px'}}>
+              <div style={{marginBottom: '50px'}}>
                 { KlayBalance &&
                   <WalletInfo balance={KlayBalance} atype='Klaytn' /> }
                 { BSCBalance && 
@@ -219,7 +221,7 @@ function DashboardPage(props) {
             </TabPanel>
             <TabPanel value={cardIndex} index={2}>
               {BSCLending && 
-                <LendingInfo lending={BSCLending} /> }
+                <LendingInfo lending={BSCLending} marginBottom='50px' /> }
             </TabPanel>
             <TabPanel value={cardIndex} index={3}>파밍</TabPanel>
             <TabPanel value={cardIndex} index={4}>예금</TabPanel>
