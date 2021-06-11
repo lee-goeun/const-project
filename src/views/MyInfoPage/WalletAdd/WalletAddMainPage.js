@@ -33,7 +33,9 @@ function WalletAddMainPage(props) {
           }}>지갑 추가</span>
         </Col>
       </Row>
-      <Row>
+      <Row
+        onClick={() => {history.push('/myinfo/wallet/create')}} 
+      >
         <Col> 
           <div 
             className='align-items-center'

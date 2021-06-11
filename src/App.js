@@ -21,6 +21,7 @@ import LoginSetupPage from 'views/MyInfoPage/LoginSetupPage';
 
 import WalletAddMainPage from 'views/MyInfoPage/WalletAdd/WalletAddMainPage';
 import WalletImportPage from 'views/MyInfoPage/WalletAdd/WalletImportPage';
+import WalletCreatePage from 'views/MyInfoPage/WalletAdd/WalletCreatePage';
 
 import Auth from './hoc/auth'; 
 
@@ -55,6 +56,7 @@ class App extends React.Component {
 
               <Route exact path="/myinfo/wallet/new" component={Auth(WalletAddMainPage, true)} /> 
               <Route exact path="/myinfo/wallet/import" component={Auth(WalletImportPage, true)} /> 
+              <Route exact path="/myinfo/wallet/create" component={Auth(WalletCreatePage, true)} /> 
 
             </Switch>
           </Container>
