@@ -23,7 +23,7 @@ function NavBar(props) {
       style={{
         width: '100%',
         maxWidth: '800px',
-        position: 'absolute', 
+        position: 'fixed', 
         left: '0', 
         right: '0', 
         margin: '0 auto', 
@@ -33,6 +33,7 @@ function NavBar(props) {
         textAlign: 'center', 
         color: '#828282', 
         borderTop: '1px solid #E0E0E0', 
+        backgroundColor: "FFFFFF"
       }}>
       <Col onClick={() => { history.push('/dashboard') }}>
         <img src={home_icon} style={{
