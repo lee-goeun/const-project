@@ -53,58 +53,52 @@ function LoginSetupPage(props) {
 				</Row>
 
 				{/* 바디 */}
-        <Box style={{width: '100%', margin: "1rem 0", textAlign: "left"}}>
-					<span style={{fontSize: '0.7rem'}}>회원님의 로그인 이력입니다.</span>
-					<span style={{fontSize: '0.7rem'}}>{'직접 로그인하지 않은 기록이 있다면 즉시 비밀번호 변경 및\n' }</span>
-					<span style={{fontSize: '0.7rem'}}>모든 디바이스에서 로그아웃 해주세요.</span>
-				</Box>
+				<div style={{ display: "flex", flexDirection: "column", height: "65vh"}}>
+					<Box style={{width: '100%', margin: "1.5rem 0", textAlign: "left", lineHeight: "1.1", height: "1" }}>
+						<span style={{fontSize: '0.7rem', whiteSpace: 'pre-wrap'}}>{'회원님의 로그인 이력입니다.\n직접 로그인하지 않은 기록이 있다면 즉시 비밀번호 변경 및\n모든 디바이스에서 로그아웃 해주세요.\n' }</span>
+					</Box>
+					<hr 
+						style={{    
+							width: '100%',
+							// position: 'absolute',
+							margin: '0 auto',
+							left: '0',
+							right: '0',
+						}}
+					/>
+
+					<Box style={{ margin: "20px 0 0 0", overflowY: "auto", overflowX: "hidden", height:"8"}}>
+						{ devices.map(device => {
+							return (
+							<div style={{ padding:"10px 0", display: 'flex', flexDirection: 'row', alignContent:"space-between", fontSize: "0.8rem", textAlign: "left" }}>
+								<span>{device.date}</span><span>{device.os}</span><span>{device.loc}</span>
+							</div>);
+						})}
+					</Box>
+
 					
-				{/* <Divider style={{    
-					width: '90%',
-					position: 'absolute',
-					margin: '0 auto',
-					left: '0',
-					right: '0'}} 
-				/> */}
-				<hr style={{    
-					width: '90%',
-					position: 'absolute',
-					margin: '0 auto',
-					left: '0',
-					right: '0'}}
-				/>
-
-				<Box style={{ margin: "20px 0 0 0"}}>
-					{ devices.map(device => {
-						return (
-						<div style={{ padding:"10px 0", display: 'flex', flexDirection: 'row', alignContent:"space-between", fontSize: "0.8rem", textAlign: "left" }}>
-							<span>{device.date}</span><span>{device.os}</span><span>{device.loc}</span>
-						</div>);
-					})}
-				</Box>
-
-				
-				<Row style={{
-					width: '100%', 
-					maxWidth: '800px', 
-					position: 'absolute', 
-					left: '0', right: '0', 
-					margin: '0 auto',
-					bottom: '80px'
-				}}>
-					<Col>
-						<Button
-							className='next-button'
-							style={{
-								backgroundColor: '#615EFF', 
-								borderColor: '#615EFF', 
-							}}
-							block
-							// onClick={() => { history.push('/myinfo/wallet/new') } }
-						>모든 디바이스에서 로그아웃
-						</Button>
-					</Col>
-				</Row>
+					<Row style={{
+						width: '100%', 
+						maxWidth: '800px', 
+						position: 'absolute', 
+						left: '0', right: '0', 
+						margin: '0 auto',
+						bottom: '80px'
+					}}>
+						<Col>
+							<Button
+								className='next-button'
+								style={{
+									backgroundColor: '#615EFF', 
+									borderColor: '#615EFF', 
+								}}
+								block
+								// onClick={() => { history.push('/myinfo/wallet/new') } }
+							>모든 디바이스에서 로그아웃
+							</Button>
+						</Col>
+					</Row>
+				</div>
 
 				{/* 하단 메뉴 */}
 				<NavBar myinfo={true}/>
