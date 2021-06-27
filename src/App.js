@@ -40,7 +40,7 @@ class App extends React.Component {
         window.__REDUX_DEVTOOLS_EXTENSION__() 
         )} 
       >
-        <div className="App justify-content-center" style={{padding: '0', margin: '0 auto'}} >
+        <div className="App justify-content-center" style={{padding: '0', margin: '0 auto', maxWidth: '450px'}} >
           <Container fluid='md'>
             <Switch>
               <Route exact path="/" component={Auth(MainPage, false)} /> 
