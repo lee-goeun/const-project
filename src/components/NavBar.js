@@ -11,6 +11,9 @@ import contents_icon from 'static/img/menu_icon/contents_icon.png';
 import history_icon from 'static/img/menu_icon/history_icon.png';
 import user_icon from 'static/img/menu_icon/user_icon.png';
 
+import './navbar.css'; 
+
+
 function NavBar(props) {
 
   const history = useHistory(); 
@@ -19,7 +22,7 @@ function NavBar(props) {
   
   return  ( 
     <Row 
-      className='align-items-center justify-content-center'
+      className='align-items-center justify-content-center font-size-resolver'
       style={{
         width: '100%',
         maxWidth: '800px',
@@ -33,7 +36,7 @@ function NavBar(props) {
         textAlign: 'center', 
         color: '#828282', 
         borderTop: '1px solid #E0E0E0', 
-        backgroundColor: "FFFFFF"
+        backgroundColor: "#FFFFFF"
       }}>
       <Col onClick={() => { history.push('/dashboard') }}>
         <img src={home_icon} style={{

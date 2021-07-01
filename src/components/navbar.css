@@ -1,0 +1,13 @@
+/* iPhone 5/SE */
+@media only screen and (max-width: 350px) {
+	.font-size-resolver {
+		font-size: 8px !important;
+	}
+}
+
+/* Galaxy Fold */
+@media only screen and (max-width: 290px) {
+	div.col {
+		padding: 0 10px !important;
+	}
+}
