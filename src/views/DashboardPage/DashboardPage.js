@@ -70,8 +70,7 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-
-
+const periodOptions = [ { type: '1D'}, { type: '1W'}, { type: '1M'}, { type: '3M'} ];
 
 function DashboardPage(props) {
 
@@ -86,8 +85,17 @@ function DashboardPage(props) {
   const [cardIndex, setCardIndex] = useState(1); 
   const [networkType, setNetworkType] = useState('All'); 
 
+  const [periodType, setPeriodType] = useState('1D'); 
+
   const handleCardIndexChange = (_, newIndex) => { setCardIndex(newIndex) }; 
   const onNetworkTypeHandler = (_, newType) => { setNetworkType(newType) }; 
+
+  const getAssetGraphValue = (periodOpt) => {
+    // DB에서 새로운 그래프 데이터 불러오기
+
+    // state에 값저장 
+    setPeriodType(periodOpt);
+  }
 
   React.useEffect(() => { 
     dispatch(auth()).then(res => { 
@@ -203,9 +211,34 @@ function DashboardPage(props) {
                 marginBottom: '50px'
               }}>
                 <div style={{
-                  padding: '5px', 
-                  fontSize: '14px', 
-                }}>지갑 총액</div>
+                  height: '2rem',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  padding: '5px',
+                  justifyContent: 'space-between',
+                }}>
+                  <div style={{
+                    // padding: '5px', 
+                    fontSize: '14px', 
+                    flex: '1'
+                  }}>지갑 총액</div>
+                  <ul style={{
+                    flex: '1',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    listStyleType: 'none',
+                    fontSize: '0.7em',
+                    justifyContent: 'space-around'
+                  }}>
+                    { periodOptions.map((opt, index) => {
+                      return <li 
+                        className={opt.type === periodType ? 'selectedPeriod' : 'defaultPeriod'} 
+                        key={`periodOpt${index}`} 
+                        onClick={() => getAssetGraphValue(opt.type)}
+                        >{opt.type}</li>
+                    }) }
+                  </ul>
+                </div>
                 <div style={{
                   padding: '5px', 
                   fontSize: '12px'
