@@ -17,7 +17,8 @@ import WalletInfo from './WalletInfo';
 import LendingInfo from './LendingInfo'; 
 
 import LineChart from 'components/charts/LineChart'; 
-// import DoughnutChart from 'components/charts/DoughnutChart'; 
+import DoughnutChart from 'components/charts/DoughnutChart'; 
+import { Doughnut } from 'react-chartjs-2';
 
 import { 
   FormControl, 
@@ -208,7 +209,7 @@ function DashboardPage(props) {
               <div style={{
                 border: '1px solid #F2F2F2',  
                 borderRadius: '5px', 
-                marginBottom: '50px'
+                marginBottom: '30px'
               }}>
                 <div style={{
                   height: '2rem',
@@ -232,7 +233,7 @@ function DashboardPage(props) {
                   }}>
                     { periodOptions.map((opt, index) => {
                       return <li 
-                        className={opt.type === periodType ? 'selectedPeriod' : 'defaultPeriod'} 
+                        className={opt.type === periodType ? 'selected-period' : 'default-period'} 
                         key={`periodOpt${index}`} 
                         onClick={() => getAssetGraphValue(opt.type)}
                         >{opt.type}</li>
@@ -240,12 +241,50 @@ function DashboardPage(props) {
                   </ul>
                 </div>
                 <div style={{
-                  padding: '5px', 
-                  fontSize: '12px'
-                }}>₩ 10,000,000</div>
+                  padding: '5px',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}>
+                  <div style={{
+                    fontSize: '18px',
+                    display: 'inline'
+                  }}>₩ 10,000,000</div>
+                  {/* 상승시 */}
+                  <div style={{
+                    margin: '0 0 0 10px',
+                    padding: '3px',
+                    fontSize: '12px',
+                    display: 'inline',
+                    color: '#E64743',
+                    border: '0.5px solid #E64743',
+                    borderRadius: '5px'
+                  }}>▴ 100%</div>
+                </div>
                 <LineChart /> 
               </div>
-              <div style={{marginBottom: '50px'}}>
+              통합 지갑 자산
+              <DoughnutChart />
+              <div style={{ 
+                border: '1px solid #F2F2F2',  
+                borderRadius: '5px', 
+                marginBottom: '30px',
+                padding: '10px',
+                display: 'grid',
+                gridTemplateColumns: '50% 50%',
+                columnGap: '5px',
+                rowGap: '5px',
+                fontSize: '0.8em'
+              }}>
+                <div>
+                  총 평가 : ₩10,000,000
+                </div>
+                <div>총 매수 : ₩5,000,000</div>
+                <div>평가 손익 : ₩5,000,000</div>
+                <div>수익률 : ▴ 300%</div>
+              </div>
+              <div style={{ border: '1px solid #F2F2F2',  
+                borderRadius: '5px', 
+                marginBottom: '30px'}}>
                 { KlayBalance &&
                   <WalletInfo balance={KlayBalance} atype='Klaytn' /> }
                 { BSCBalance && 
