@@ -18,3 +18,26 @@
 	border-radius: 10%;
 	text-align: center;
 }
+
+.wallet-summary-container {
+	/* boxSizing: 'border-box', */
+	border: 1px solid #F2F2F2;
+	border-radius: 5px;
+	margin-bottom: 30px;
+	padding: 10px;
+	display: grid;
+	grid-template-columns: auto auto;
+	column-gap: 10px;
+	grid-row-gap: 5px;
+	font-size: 0.8em;
+}
+
+.wallet-summary {
+	display: flex; 
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.wallet-summary p {
+	margin: 0;
+}

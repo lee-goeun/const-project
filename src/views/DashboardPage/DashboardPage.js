@@ -264,23 +264,19 @@ function DashboardPage(props) {
               </div>
               통합 지갑 자산
               <DoughnutChart />
-              <div style={{ 
-                border: '1px solid #F2F2F2',  
-                borderRadius: '5px', 
-                marginBottom: '30px',
-                padding: '10px',
-                display: 'grid',
-                gridTemplateColumns: '50% 50%',
-                columnGap: '5px',
-                rowGap: '5px',
-                fontSize: '0.8em'
-              }}>
-                <div>
-                  총 평가 : ₩10,000,000
+              <div className='wallet-summary-container'>
+                <div className='wallet-summary'>
+                  <p>총 평가</p> <p> ₩10,000,000</p>
                 </div>
-                <div>총 매수 : ₩5,000,000</div>
-                <div>평가 손익 : ₩5,000,000</div>
-                <div>수익률 : ▴ 300%</div>
+                <div className='wallet-summary'>
+                  <p>총 매수</p> <p> ₩5,000,000</p>
+                </div>
+                <div className='wallet-summary'>
+                  <p>평가 손익</p> <p> ₩5,000,000</p>
+                </div>
+                <div className='wallet-summary'>
+                  <p>수익률</p> <p> ▴ 300%</p>
+                </div>
               </div>
               <div style={{ border: '1px solid #F2F2F2',  
                 borderRadius: '5px', 
