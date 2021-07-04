@@ -37,7 +37,9 @@ function WalletInfo(props) {
           </Col>
           <Col xs={2}>
             <Button 
+              className="font-size-resolver"
               style={{
+                width: 'auto',
                 marginRight: '0',
                 color: '#FFFFFF', 
                 backgroundColor: '#95B1F9',
