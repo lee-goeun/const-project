@@ -13,8 +13,8 @@ function DoughnutChart(props) {
       values.push(value.token_balance); 
     }
   } else{ 
-    // labels = ['1','2','3','4'];
-    // values = [1, 2, 3, 4]; 
+    labels = ['1','2','3','4'];
+    values = [1, 2, 3, 4]; 
   }
 
   let data = {

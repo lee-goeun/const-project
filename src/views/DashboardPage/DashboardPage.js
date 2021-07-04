@@ -206,16 +206,12 @@ function DashboardPage(props) {
               </div>
             </TabPanel>
             <TabPanel value={cardIndex} index={1}>
-              <div style={{
-                border: '1px solid #F2F2F2',  
-                borderRadius: '5px', 
-                marginBottom: '30px'
-              }}>
+              <div className='container-border'>
                 <div style={{
                   height: '2rem',
                   display: 'flex',
                   flexDirection: 'row',
-                  padding: '5px',
+                  // padding: '5px',
                   justifyContent: 'space-between',
                 }}>
                   <div style={{
@@ -258,34 +254,39 @@ function DashboardPage(props) {
                     color: '#E64743',
                     border: '0.5px solid #E64743',
                     borderRadius: '5px'
-                  }}>▴ 100%</div>
+                  }}>▴ 100.00 %</div>
                 </div>
                 <LineChart /> 
               </div>
-              통합 지갑 자산
-              <DoughnutChart />
-              <div className='wallet-summary-container'>
-                <div className='wallet-summary'>
-                  <p>총 평가</p> <p> ₩10,000,000</p>
+              
+              <div style={{ margin: '0 0 40px 0'}}>
+                {/* TODO: fontSize 어쩌지.... */}
+                <p>통합 지갑 자산</p>
+                <DoughnutChart />
+              </div>
+
+              <div className='wallet-grid-container container-border'>
+                <div className='wallet-grid'>
+                  <p style={{ flex: '1'}}>총 평가</p> <p style={{ flex: '1'}}> ₩10,000,000</p>
                 </div>
-                <div className='wallet-summary'>
-                  <p>총 매수</p> <p> ₩5,000,000</p>
+                <div className='wallet-grid'>
+                  <p style={{ flex: '1'}}>총 매수</p> <p style={{ flex: '1'}}> ₩5,000,000</p>
                 </div>
-                <div className='wallet-summary'>
-                  <p>평가 손익</p> <p> ₩5,000,000</p>
+                <div className='wallet-grid'>
+                  <p style={{ flex: '1'}}>평가 손익</p> <p style={{ flex: '1'}}> ₩5,000,000</p>
                 </div>
-                <div className='wallet-summary'>
-                  <p>수익률</p> <p> ▴ 300%</p>
+                <div className='wallet-grid'>
+                  <p style={{ flex: '1'}}>수익률</p> <p className="rise" style={{ flex: '1'}}> ▴ 300.00 %</p>
                 </div>
               </div>
-              <div style={{ border: '1px solid #F2F2F2',  
-                borderRadius: '5px', 
-                marginBottom: '30px'}}>
+
+              <div className='container-border grid-row-offset'>
                 { KlayBalance &&
                   <WalletInfo balance={KlayBalance} atype='Klaytn' /> }
                 { BSCBalance && 
                   <WalletInfo balance={BSCBalance} atype='BSC' /> }
               </div>
+
             </TabPanel>
             <TabPanel value={cardIndex} index={2}>
               {BSCLending && 
