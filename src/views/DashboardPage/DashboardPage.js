@@ -200,11 +200,140 @@ function DashboardPage(props) {
             onChangeIndex={handleCardIndexChange}
             style={{margin: '0px'}}
           >
+            {/* 전체 */}
             <TabPanel value={cardIndex} index={0}>
-              <div style={{height: '1080px'}}>
+              {/* <div style={{height: '1080px'}}>
                 전체
+              </div> */}
+              <div className='container-border' style={{marginBottom: '20px'}}>
+                <div style={{
+                  height: '2rem',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  // padding: '5px',
+                  justifyContent: 'space-between',
+                }}>
+                  <div style={{
+                    // padding: '5px', 
+                    fontSize: '14px', 
+                    flex: '1'
+                  }}>
+                  <FormControl>
+                    <Select
+                      // onChange={onNetworkTypeHandler}
+                      value={'netWorth'}
+                      style={{
+                        textAlign: 'left', 
+                        // height: '40px', 
+                        backgroundColor: '',
+                        borderColor: 'none',  
+                        border: 'none',
+                        color: '#4F4F4F', 
+                        // marginBottom: '10px'
+                        padding: '0',
+                    }}>
+                      <MenuItem style={{}} value='netWorth'>순 자산</MenuItem>
+                      <MenuItem style={{}} value='totalAssets'>총 자산</MenuItem>
+                      <MenuItem style={{}} value='totalDebts'>총 부채</MenuItem>
+                    </Select>
+                  </FormControl>
+                  
+                  </div>
+                  <ul style={{
+                    flex: '1',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    listStyleType: 'none',
+                    fontSize: '0.7em',
+                    justifyContent: 'space-around'
+                  }}>
+                    { periodOptions.map((opt, index) => {
+                      return <li 
+                        className={opt.type === periodType ? 'selected-period' : 'default-period'} 
+                        key={`periodOpt${index}`} 
+                        onClick={() => getAssetGraphValue(opt.type)}
+                        >{opt.type}</li>
+                    }) }
+                  </ul>
+                </div>
+
+                <div style={{
+                  padding: '5px',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}>
+                  <div style={{
+                    fontSize: '18px',
+                    display: 'inline'
+                  }}>₩ 31,000,000</div>
+                  {/* 상승시 */}
+                  <div style={{
+                    margin: '0 0 0 10px',
+                    padding: '1px 3px',
+                    fontSize: '12px',
+                    display: 'inline',
+                    color: '#615EFF',
+                    border: '0.5px solid #615EFF',
+                    borderRadius: '5px'
+                  }}>▾ 3.2 %</div>
+                </div>
+                <LineChart /> 
+              </div>
+              
+              <div className='container-border' style={{ marginBottom: '20px'}}>
+                <p style={{ color: '#828282', fontSize: '12px'}}>순 자산</p>
+                <div style={{ display: 'flex', flexDirection: 'row'}}>
+                  <p style={{ flex: '1', margin: '0'}}>₩ 31,000,000</p> 
+                  <p 
+                    className='rise' 
+                    style={{ 
+                      flex: '1', 
+                      margin: '0', 
+                      textAlign:'right', 
+                      fontSize: '12px', 
+                      alignSelf:'center', 
+                      fontWeight: 'lighter'
+                    }}
+                  >+ ₩ 30,000</p>
+                </div>
+              </div>
+              <div className='container-border' style={{ marginBottom: '20px'}}>
+                <p style={{ color: '#828282', fontSize: '12px'}}>총 자산</p>
+                <div style={{ display: 'flex', flexDirection: 'row'}}>
+                  <p style={{ flex: '1', margin: '0'}}>₩ 34,000,000</p> 
+                  <p 
+                    className='rise' 
+                    style={{ 
+                      flex: '1', 
+                      margin: '0', 
+                      textAlign:'right', 
+                      fontSize: '12px', 
+                      alignSelf:'center', 
+                      fontWeight: 'lighter'
+                    }}
+                  >+ ₩ 30,000</p>
+                </div>
+              </div>
+              <div className='container-border' style={{ marginBottom: '20px'}}>
+                <p style={{ color: '#828282', fontSize: '12px'}}>총 부채</p>
+                <div style={{ display: 'flex', flexDirection: 'row'}}>
+                  <p style={{ flex: '1', margin: '0'}}>₩ 3,000,000</p> 
+                  <p 
+                    className='drop' 
+                    style={{ 
+                      flex: '1', 
+                      margin: '0', 
+                      textAlign:'right', 
+                      fontSize: '12px', 
+                      alignSelf:'center', 
+                      fontWeight: 'lighter'
+                    }}
+                  >- ₩ 30,000</p>
+                </div>
               </div>
             </TabPanel>
+
+            {/* 지갑 */}
             <TabPanel value={cardIndex} index={1}>
               <div className='container-border'>
                 <div style={{
@@ -248,7 +377,7 @@ function DashboardPage(props) {
                   {/* 상승시 */}
                   <div style={{
                     margin: '0 0 0 10px',
-                    padding: '3px',
+                    padding: '1px 3px',
                     fontSize: '12px',
                     display: 'inline',
                     color: '#E64743',

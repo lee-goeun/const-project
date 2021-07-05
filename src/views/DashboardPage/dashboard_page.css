@@ -7,6 +7,15 @@
 	padding: 20px !important;
 }
 
+.MuiInputBase-input {
+	padding: 0;
+}
+
+/* Select 인풋에서 언더라인 제거 */
+.MuiInput-underline::before, .MuiInput-underline::after {
+	display: none;
+}
+
 .container-border {
 	border: 1px solid #F2F2F2;
 	border-radius: 5px;

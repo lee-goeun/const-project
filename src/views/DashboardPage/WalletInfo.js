@@ -27,7 +27,7 @@ function WalletInfo(props) {
               }
               <div style={{
                 margin: '0 0 0 10px',
-                padding: '3px',
+                padding: '1px 3px',
                 fontSize: '12px',
                 display: 'inline',
                 color: '#615EFF',
