@@ -21,8 +21,8 @@
     left: 0;
     right: 0;
     width: 100%;
-    max-width: 800px;
-    margin: auto;
+    max-width: 450px;
+    margin: 0 auto;
 }
 
 .next-button { 

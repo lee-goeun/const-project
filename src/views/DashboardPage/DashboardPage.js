@@ -172,7 +172,7 @@ function DashboardPage(props) {
         textAlign: 'left', 
         margin: '0 auto', 
         height: '60px',
-        position: 'absolute', 
+        // position: 'absolute', 
         left: '0', 
         width: '100%'
       }}>
@@ -183,14 +183,13 @@ function DashboardPage(props) {
               onChange={handleCardIndexChange}
               indicatorColor="primary"
               textColor="primary"
-              variant="scrollable"
+              variant="fullWidth"
               scrollButtons="on"
             >
-              <Tab label="전체" disabled {...a11yProps(0)} />
-              <Tab label="지갑" {...a11yProps(1)} />
-              <Tab label="랜딩" {...a11yProps(2)}  />
-              <Tab label="파밍" disabled {...a11yProps(2)}  />
-              <Tab label="예금" disabled {...a11yProps(2)}  />
+              <Tab label="요약" disabled {...a11yProps(0)}  />
+              <Tab label="지갑" {...a11yProps(1)}  />
+              <Tab label="파밍" {...a11yProps(2)}  />
+              <Tab label="스테이킹" disabled {...a11yProps(2)}  />
             </Tabs>
           </AppBar>
           <Divider />

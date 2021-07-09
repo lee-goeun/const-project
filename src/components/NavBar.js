@@ -25,7 +25,7 @@ function NavBar(props) {
       className='align-items-center justify-content-center font-size-resolver'
       style={{
         width: '100%',
-        maxWidth: '800px',
+        maxWidth: '900px',
         position: 'fixed', 
         left: '0', 
         right: '0', 
