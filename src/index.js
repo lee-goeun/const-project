@@ -8,7 +8,7 @@ import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   typography: { 
-    fontFamily: 'Roboto Medium', 
+    fontFamily: 'Pretendard Variable', 
   }, 
 }); 
 
