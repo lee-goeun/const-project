@@ -16,11 +16,11 @@ function WalletInfo(props) {
 
   return ( 
       <div className='wallet-coin-item'>
-        <Row xs={10} style={{height: '40px'}}>
+        <Row style={{height: '40px'}}>
           <Col xs={1}>
             {atype == 'Klaytn' ? <img src={klaytn_img} /> : <img src={bsc_img} />}
           </Col>
-          <Col xs={8}> 
+          <Col xs={7}> 
               {atype == 'Klaytn' ? 
                 <span style={{fontSize: '15px', fontWeight: 'bold'}}>KLAY</span> : 
                 <span style={{fontSize: '15px', fontWeight: 'bold'}}>KSP</span>

@@ -387,13 +387,13 @@ function DashboardPage(props) {
                 <LineChart /> 
               </div>
               
-              <div style={{ margin: '0 0 40px 0'}}>
+              <div className='container-border'>
                 {/* TODO: fontSize 어쩌지.... */}
                 <p style={{ fontSize: '0.8rem' }}>지갑 자산 구성</p>
                 <DoughnutChart />
               </div>
 
-              {/* <div className='wallet-grid-container container-border'>
+              {/* <div className='ㅈallet-grid-container container-border'>
                 <div className='wallet-grid'>
                   <p style={{ flex: '1'}}>총 평가</p> <p style={{ flex: '1', textAlign: 'right'}}> ₩10,000,000</p>
                 </div>
