@@ -3,8 +3,8 @@
 	color: white; 
 }
 
-.MuiBox-root-10 {
-	padding: 20px !important;
+.MuiBox-root-12, .MuiBox-root-10 {
+	padding: 20px 20px 60px 20px !important;
 }
 
 .MuiInputBase-input {
@@ -43,8 +43,8 @@
 	/* padding: 10px; */
 	display: grid;
 	grid-template-columns: auto auto;
-	column-gap: 10px;
-	grid-row-gap: 5px;
+	column-gap: 20px;
+	grid-row-gap: 10px;
 	font-size: 0.8em;
 }
 

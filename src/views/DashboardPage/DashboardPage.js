@@ -347,7 +347,7 @@ function DashboardPage(props) {
                     fontSize: '14px', 
                     flex: '1'
                   }}>지갑 총액</div>
-                  <ul style={{
+                  {/* <ul style={{
                     flex: '1',
                     display: 'flex',
                     flexDirection: 'row',
@@ -362,7 +362,7 @@ function DashboardPage(props) {
                         onClick={() => getAssetGraphValue(opt.type)}
                         >{opt.type}</li>
                     }) }
-                  </ul>
+                  </ul> */}
                 </div>
                 <div style={{
                   padding: '5px',
@@ -389,24 +389,24 @@ function DashboardPage(props) {
               
               <div style={{ margin: '0 0 40px 0'}}>
                 {/* TODO: fontSize 어쩌지.... */}
-                <p>통합 지갑 자산</p>
+                <p style={{ fontSize: '0.8rem' }}>지갑 자산 구성</p>
                 <DoughnutChart />
               </div>
 
-              <div className='wallet-grid-container container-border'>
+              {/* <div className='wallet-grid-container container-border'>
                 <div className='wallet-grid'>
-                  <p style={{ flex: '1'}}>총 평가</p> <p style={{ flex: '1'}}> ₩10,000,000</p>
+                  <p style={{ flex: '1'}}>총 평가</p> <p style={{ flex: '1', textAlign: 'right'}}> ₩10,000,000</p>
                 </div>
                 <div className='wallet-grid'>
-                  <p style={{ flex: '1'}}>총 매수</p> <p style={{ flex: '1'}}> ₩5,000,000</p>
+                  <p style={{ flex: '1'}}>총 매수</p> <p style={{ flex: '1', textAlign: 'right'}}> ₩5,000,000</p>
                 </div>
                 <div className='wallet-grid'>
-                  <p style={{ flex: '1'}}>평가 손익</p> <p style={{ flex: '1'}}> ₩5,000,000</p>
+                  <p style={{ flex: '1'}}>평가 손익</p> <p style={{ flex: '1', textAlign: 'right'}}> ₩5,000,000</p>
                 </div>
                 <div className='wallet-grid'>
-                  <p style={{ flex: '1'}}>수익률</p> <p className="rise" style={{ flex: '1'}}> ▴ 300.00 %</p>
+                  <p style={{ flex: '1'}}>수익률</p> <p className="rise" style={{ flex: '1', textAlign: 'right'}}> ▴ 300.00 %</p>
                 </div>
-              </div>
+              </div> */}
 
               <div className='container-border grid-row-offset'>
                 { KlayBalance &&
