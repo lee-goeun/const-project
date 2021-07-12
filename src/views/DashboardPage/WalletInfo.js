@@ -15,7 +15,7 @@ function WalletInfo(props) {
   const {balance, atype} = props;
 
   return ( 
-      <>
+      <div className='wallet-coin-item'>
         <Row xs={10} style={{height: '40px'}}>
           <Col xs={1}>
             {atype == 'Klaytn' ? <img src={klaytn_img} /> : <img src={bsc_img} />}
@@ -68,7 +68,7 @@ function WalletInfo(props) {
             <p style={{ flex: '1'}}>매수 금액</p> <p style={{ flex: '1', textAlign: 'right'}}>₩1,000,000</p>
           </div> */}
         </div>
-      </>
+      </div>
   )
 }
 
