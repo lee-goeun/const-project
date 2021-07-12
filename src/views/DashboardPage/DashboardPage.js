@@ -186,7 +186,7 @@ function DashboardPage(props) {
               variant="fullWidth"
               scrollButtons="on"
             >
-              <Tab label="요약" disabled {...a11yProps(0)}  />
+              <Tab label="요약" {...a11yProps(0)}  />
               <Tab label="지갑" {...a11yProps(1)}  />
               <Tab label="파밍" {...a11yProps(2)}  />
               <Tab label="스테이킹" disabled {...a11yProps(2)}  />
@@ -280,52 +280,52 @@ function DashboardPage(props) {
               </div>
               
               <div className='container-border' style={{ marginBottom: '20px'}}>
-                <p style={{ color: '#828282', fontSize: '12px'}}>순 자산</p>
+                <p style={{ color: '#828282', fontSize: '12px', marginBottom: '0'}}>순 자산</p>
                 <div style={{ display: 'flex', flexDirection: 'row'}}>
-                  <p style={{ flex: '1', margin: '0'}}>₩ 31,000,000</p> 
+                  <p style={{ flex: '1', marginTop: '5px'}}>₩ 31,000,000</p> 
                   <p 
                     className='rise' 
                     style={{ 
                       flex: '1', 
-                      margin: '0', 
                       textAlign:'right', 
                       fontSize: '12px', 
                       alignSelf:'center', 
-                      fontWeight: 'lighter'
+                      fontWeight: 'lighter',
+                      marginTop: '5px'
                     }}
                   >+ ₩ 30,000</p>
                 </div>
-              </div>
-              <div className='container-border' style={{ marginBottom: '20px'}}>
-                <p style={{ color: '#828282', fontSize: '12px'}}>총 자산</p>
+              {/* </div>
+              <div className='container-border' style={{ marginBottom: '20px'}}> */}
+                <p style={{ color: '#828282', fontSize: '12px', marginBottom: '0'}}>총 자산</p>
                 <div style={{ display: 'flex', flexDirection: 'row'}}>
-                  <p style={{ flex: '1', margin: '0'}}>₩ 34,000,000</p> 
+                  <p style={{ flex: '1', marginTop: '5px'}}>₩ 34,000,000</p> 
                   <p 
                     className='rise' 
                     style={{ 
                       flex: '1', 
-                      margin: '0', 
                       textAlign:'right', 
                       fontSize: '12px', 
                       alignSelf:'center', 
-                      fontWeight: 'lighter'
+                      fontWeight: 'lighter',
+                      marginTop: '5px'
                     }}
                   >+ ₩ 30,000</p>
                 </div>
-              </div>
-              <div className='container-border' style={{ marginBottom: '20px'}}>
-                <p style={{ color: '#828282', fontSize: '12px'}}>총 부채</p>
+              {/* </div>
+              <div className='container-border' style={{ marginBottom: '20px'}}> */}
+                <p style={{ color: '#828282', fontSize: '12px', marginBottom: '0'}}>총 부채</p>
                 <div style={{ display: 'flex', flexDirection: 'row'}}>
-                  <p style={{ flex: '1', margin: '0'}}>₩ 3,000,000</p> 
+                  <p style={{ flex: '1', marginTop: '5px'}}>₩ 3,000,000</p> 
                   <p 
                     className='drop' 
                     style={{ 
                       flex: '1', 
-                      margin: '0', 
                       textAlign:'right', 
                       fontSize: '12px', 
                       alignSelf:'center', 
-                      fontWeight: 'lighter'
+                      fontWeight: 'lighter',
+                      marginTop: '5px'
                     }}
                   >- ₩ 30,000</p>
                 </div>
