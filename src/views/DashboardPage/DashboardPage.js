@@ -416,9 +416,93 @@ function DashboardPage(props) {
               </div>
 
             </TabPanel>
-            <TabPanel value={cardIndex} index={2}>
+            {/* <TabPanel value={cardIndex} index={2}>
               {BSCLending && 
                 <LendingInfo lending={BSCLending} marginBottom='50px' /> }
+            </TabPanel> */}
+             {/* 파밍 */}
+             <TabPanel value={cardIndex} index={2}>
+              <div className='container-border'>
+                <div style={{
+                  height: '2rem',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  // padding: '5px',
+                  justifyContent: 'space-between',
+                }}>
+                  <div style={{
+                    // padding: '5px', 
+                    fontSize: '14px', 
+                    flex: '1'
+                  }}>지갑 총액</div>
+                  {/* <ul style={{
+                    flex: '1',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    listStyleType: 'none',
+                    fontSize: '0.7em',
+                    justifyContent: 'space-around'
+                  }}>
+                    { periodOptions.map((opt, index) => {
+                      return <li 
+                        className={opt.type === periodType ? 'selected-period' : 'default-period'} 
+                        key={`periodOpt${index}`} 
+                        onClick={() => getAssetGraphValue(opt.type)}
+                        >{opt.type}</li>
+                    }) }
+                  </ul> */}
+                </div>
+                <div style={{
+                  padding: '5px',
+                  display: 'flex',
+                  alignItems: 'center',
+                }}>
+                  <div style={{
+                    fontSize: '18px',
+                    display: 'inline'
+                  }}>₩ 10,000,000</div>
+                  {/* 상승시 */}
+                  <div style={{
+                    margin: '0 0 0 10px',
+                    padding: '1px 3px',
+                    fontSize: '12px',
+                    display: 'inline',
+                    color: '#E64743',
+                    border: '0.5px solid #E64743',
+                    borderRadius: '5px'
+                  }}>▴ 100.00 %</div>
+                </div>
+                <LineChart /> 
+              </div>
+              
+              <div className='container-border'>
+                {/* TODO: fontSize 어쩌지.... */}
+                <p style={{ fontSize: '0.8rem' }}>지갑 자산 구성</p>
+                <DoughnutChart />
+              </div>
+
+              {/* <div className='ㅈallet-grid-container container-border'>
+                <div className='wallet-grid'>
+                  <p style={{ flex: '1'}}>총 평가</p> <p style={{ flex: '1', textAlign: 'right'}}> ₩10,000,000</p>
+                </div>
+                <div className='wallet-grid'>
+                  <p style={{ flex: '1'}}>총 매수</p> <p style={{ flex: '1', textAlign: 'right'}}> ₩5,000,000</p>
+                </div>
+                <div className='wallet-grid'>
+                  <p style={{ flex: '1'}}>평가 손익</p> <p style={{ flex: '1', textAlign: 'right'}}> ₩5,000,000</p>
+                </div>
+                <div className='wallet-grid'>
+                  <p style={{ flex: '1'}}>수익률</p> <p className="rise" style={{ flex: '1', textAlign: 'right'}}> ▴ 300.00 %</p>
+                </div>
+              </div> */}
+
+              <div className='container-border grid-row-offset'>
+                { KlayBalance &&
+                  <WalletInfo balance={KlayBalance} atype='Klaytn' /> }
+                { BSCBalance && 
+                  <WalletInfo balance={BSCBalance} atype='BSC' /> }
+              </div>
+
             </TabPanel>
             <TabPanel value={cardIndex} index={3}>파밍</TabPanel>
             <TabPanel value={cardIndex} index={4}>예금</TabPanel>
