@@ -224,6 +224,8 @@ function FarmingDetailInfo(props) {
                     style={{
                       backgroundColor: "#B5B4FF",
                       color: "#fff",
+                      borderStyle: "none",
+                      borderRadius: "10px",
                     }}
                   >
                     리워드 수확
@@ -233,31 +235,40 @@ function FarmingDetailInfo(props) {
               <div className="container-border" style={{ margin: "0" }}>
                 <div className="farming-grid">
                   <p style={{ flex: "1" }}>예치 수량</p>{" "}
-                  <p style={{ flex: "1", textAlign: "right" }}> 123.0000 KSP + 2.0000 ETH</p>
+                  <p style={{ flex: "1", textAlign: "right" }}>
+                    {" "}
+                    123.0000 KSP + 2.0000 ETH
+                  </p>
                 </div>
                 <div className="farming-grid">
                   <p style={{ flex: "1" }}>매수 금액</p>{" "}
                   <p style={{ flex: "1", textAlign: "right" }}> ₩900,000</p>
                 </div>
-                <div className="farming-grid"> 
+                <div className="farming-grid">
                   <p style={{ flex: "1" }}>평가 금액</p>{" "}
                   <p style={{ flex: "1", textAlign: "right" }}> ₩1,000,000</p>
                 </div>
                 <div className="farming-grid">
                   <p style={{ flex: "1" }}>리워드</p>{" "}
-                  <p style={{ flex: "1", textAlign: "right" }}> ₩1,000,000</p>
+                  <p style={{ flex: "1", textAlign: "right" }}>
+                    {" "}
+                    1.0000 KSP (₩100,000)
+                  </p>
                 </div>
                 <div className="farming-grid">
                   <p style={{ flex: "1" }}>수확된 리워드</p>{" "}
-                  <p style={{ flex: "1", textAlign: "right" }}> ₩1,000,000</p>
+                  <p style={{ flex: "1", textAlign: "right" }}>
+                    {" "}
+                    0.5600 KSP (₩5,037)
+                  </p>
                 </div>
                 <div className="farming-grid">
                   <p style={{ flex: "1" }}>예상 APR</p>{" "}
-                  <p style={{ flex: "1", textAlign: "right" }}> ₩1,000,000</p>
+                  <p style={{ flex: "1", textAlign: "right" }}> 77.11%</p>
                 </div>
                 <div className="farming-grid">
                   <p style={{ flex: "1" }}>현재 수익률</p>{" "}
-                  <p style={{ flex: "1", textAlign: "right" }}> ₩1,000,000</p>
+                  <p style={{ flex: "1", textAlign: "right" }}> 77.11%</p>
                 </div>
               </div>
             </div>
