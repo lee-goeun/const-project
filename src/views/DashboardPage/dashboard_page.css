@@ -70,6 +70,34 @@ div[class*="MuiBox-root-"] {
 	color: #828282;
 }
 
+
+/* 파밍 css */
+.farming-grid-container {
+	/* padding: 10px; */
+	display: grid;
+	grid-template-columns: auto auto;
+	column-gap: 20px;
+	grid-row-gap: 10px;
+	font-size: 0.8em;
+}
+
+.farming-grid {
+	display: flex; 
+	padding:5px 0;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.farming-grid p {
+	margin: 0;
+}
+
+.farming-grid > p:first-child {
+	color: #828282;
+}
+
+
+
 .grid-row-offset {
 	display: grid;
 	/* grid-row-gap: 20px; */
