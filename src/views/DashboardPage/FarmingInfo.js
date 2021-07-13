@@ -3,6 +3,7 @@ import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
 
 import { withRouter } from "react-router";
+import { Link } from "react-router-dom";
 
 import klaytn_img from "static/img/token_icon/klaytn_logo.png";
 import bsc_img from "static/img/token_icon/bsc_logo.png";
@@ -40,28 +41,23 @@ function FarmingInfo(props) {
             ▾ 89.30 %
           </div>
         </Col>
-        <Col xs={1}>
-          <Button
-            style={{
-              font: "8px",
-              width: "auto",
-              marginRight: "0",
-              backgroundColor: "inherit",
-              color: "#000",
-              border: "#E0E0E0",
-              borderStyle: "dashed",
-              borderRadius: "5px",
-            }}
-          >
-            trade
-          </Button>
+        <Col>
+          <Link to="./FarmingDetailInfo">
+            <Button
+              variant="secondary"
+              size="sm"
+              style={{
+                backgroundColor: "inherit",
+                color: "#000",
+                border: "none",
+                textDecoration: "underline",
+              }}
+            >
+              자세히 보기
+            </Button>
+          </Link>
         </Col>
       </Row>
-      {/* <div style={{
-          height: '200px'
-        }}>
-          <DoughnutChart data={balance.tokens}/>
-        </div> */}
       <div className="container-border" style={{ margin: "0" }}>
         <div className="farming-grid">
           <p style={{ flex: "1" }}>총 매수 금액</p>{" "}
@@ -76,12 +72,14 @@ function FarmingInfo(props) {
           <p style={{ flex: "1", textAlign: "right" }}> ₩400,000</p>
         </div>
         <Button
+          variant="primary"
+          size="lg"
+          block
           style={{
-            width: "auto",
-            marginRight: "0",
             color: "#FFFFFF",
             backgroundColor: "#95B1F9",
             border: "#E0E0E0",
+            fontSize: "14px",
           }}
         >
           리워드 일괄 수확
