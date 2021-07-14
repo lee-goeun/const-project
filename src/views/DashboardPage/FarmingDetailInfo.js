@@ -140,6 +140,32 @@ function FarmingDetailInfo(props) {
   return (
     <Container style={{ padding: "0" }}>
       <Row
+        className="align-items-end"
+        style={{
+          padding: "20px 0",
+          position: "relative",
+        }}
+      >
+        <Button
+          variant="outline-dark"
+          style={{
+            position: "absolute",
+            left: "30px",
+            top: "14px",
+            border: "none",
+          }}
+        >
+          &lt;
+        </Button>
+        <Col>
+          {<img src={bsc_img} />}
+          <span style={{ fontWeight: "700", paddingLeft: "5px" }}>
+            KLAY SWAP
+          </span>
+        </Col>
+      </Row>
+
+      <Row
         className="align-items-center"
         style={{
           textAlign: "left",
@@ -226,6 +252,7 @@ function FarmingDetailInfo(props) {
                       color: "#fff",
                       borderStyle: "none",
                       borderRadius: "10px",
+                      float: "right",
                     }}
                   >
                     리워드 수확
