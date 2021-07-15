@@ -4,6 +4,10 @@ import { Container, Row, Col, Button, Alert } from "react-bootstrap";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
+import IconButton from "@material-ui/core/IconButton";
+import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import SvgIcon from "@material-ui/core/SvgIcon";
+
 import bsc_img from "static/img/token_icon/bsc_logo.png";
 
 function FarmingDetailInfo(props) {
@@ -59,17 +63,9 @@ function FarmingDetailInfo(props) {
         }}
       >
         <Link to="./dashboard">
-          <Button
-            variant="outline-dark"
-            style={{
-              position: "absolute",
-              left: "30px",
-              top: "14px",
-              border: "none",
-            }}
-          >
-            &lt;
-          </Button>
+          <IconButton aria-label="before" component="span">
+            <NavigateBeforeIcon />
+          </IconButton>
         </Link>
         <Col>
           {<img src={bsc_img} />}

@@ -661,7 +661,7 @@ function DashboardPage(props) {
                 </div>
               </div>
 
-              <div className="container-border grid-row-offset">
+              <div className="container-border">
                 <p style={{ fontSize: "0.8rem" }}>프로토콜별 요약</p>
                 {KlayBalance && (
                   <FarmingInfo balance={KlayBalance} atype="Klaytn" />
