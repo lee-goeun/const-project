@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 
 import { useHistory } from "react-router-dom";
@@ -104,6 +104,49 @@ function DashboardPage(props) {
     // state에 값저장
     setPeriodType(periodOpt);
   };
+
+  /* 파밍영역 : info알림기능 */
+  function AlertInfo() {
+    const [show, setShow] = useState(false);
+    if (show) {
+      return (
+        <Alert
+          onClose={() => setShow(false)}
+          dismissible
+          style={{
+            backgroundColor: "#F6F6F6",
+            position: "absolute",
+            left: "50%",
+            transform: "translate(-50%)",
+            width: "300px",
+          }}
+        >
+          <Alert.Heading style={{ fontSize: "14px" }}>도움말</Alert.Heading>
+          <p style={{ fontSize: "12px" }}>
+            ‘매수 금액’은 풀에 처음 유동성 공급을 했을 당시 예치한 토큰의 원화
+            환산 금액입니다.
+          </p>
+        </Alert>
+      );
+    }
+    return (
+      <Button
+        onClick={() => setShow(true)}
+        variant="outline-dark"
+        style={{
+          width: "18px",
+          height: "18px",
+          padding: "0",
+          fontSize: "11px",
+          margin: "auto",
+          marginLeft: "5px",
+          borderRadius: "18px",
+        }}
+      >
+        i
+      </Button>
+    );
+  }
 
   React.useEffect(() => {
     dispatch(auth()).then((res) => {
@@ -591,30 +634,29 @@ function DashboardPage(props) {
               </div>
 
               <div className="container-border">
-                {/* TODO: fontSize 어쩌지.... */}
                 <p style={{ fontSize: "0.8rem" }}>종합 요약</p>
                 <div className="farming-grid">
-                  <p style={{ flex: "1" }}>총 매수 금액</p>{" "}
+                  <p>총 매수 금액</p> <AlertInfo />
                   <p style={{ flex: "1", textAlign: "right" }}> ₩3,600,000</p>
                 </div>
                 <div className="farming-grid">
-                  <p style={{ flex: "1" }}>총 평가 금액</p>{" "}
+                  <p>총 평가 금액</p> <AlertInfo />
                   <p style={{ flex: "1", textAlign: "right" }}> ₩4,000,000</p>
                 </div>
                 <div className="farming-grid">
-                  <p style={{ flex: "1" }}>리워드 합계</p>{" "}
+                  <p>리워드 합계</p> <AlertInfo />
                   <p style={{ flex: "1", textAlign: "right" }}> ₩400,000</p>
                 </div>
                 <div className="farming-grid">
-                  <p style={{ flex: "1" }}>수확된 리워드</p>{" "}
+                  <p>수확된 리워드</p> <AlertInfo />
                   <p style={{ flex: "1", textAlign: "right" }}> ₩600,000</p>
                 </div>
                 <div className="farming-grid">
-                  <p style={{ flex: "1" }}>예상 APR 평균</p>{" "}
+                  <p>예상 APR 평균</p> <AlertInfo />
                   <p style={{ flex: "1", textAlign: "right" }}> 11.11%</p>
                 </div>
                 <div className="farming-grid">
-                  <p style={{ flex: "1" }}>현재 수익륜 평균</p>{" "}
+                  <p>현재 수익륜 평균</p> <AlertInfo />
                   <p style={{ flex: "1", textAlign: "right" }}> 11.11%</p>
                 </div>
               </div>

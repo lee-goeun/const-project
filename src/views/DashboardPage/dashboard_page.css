@@ -96,6 +96,15 @@ div[class*="MuiBox-root-"] {
 	color: #828282;
 }
 
+.farming-coin-item:not(:last-child)::after {
+	content: '';
+    width: 70vw;
+    height: 0.5px;
+	left: 0;
+	margin: 5px auto;
+    display: block;
+}
+
 
 
 .grid-row-offset {

@@ -1,6 +1,5 @@
-import React from "react";
-
-import { Row, Col, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Row, Col, Button, Alert } from "react-bootstrap";
 
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
@@ -12,53 +11,57 @@ function FarmingInfo(props) {
   const { balance, atype } = props;
 
   return (
-    <div className="wallet-coin-item">
-      <Row style={{ height: "40px" }}>
-        <Col xs={1}>
-          {atype == "Klaytn" ? <img src={klaytn_img} /> : <img src={bsc_img} />}
-        </Col>
-        <Col xs={7}>
-          {atype == "Klaytn" ? (
-            <span style={{ fontSize: "15px", fontWeight: "bold" }}>
-              KLAYswap
-            </span>
-          ) : (
-            <span style={{ fontSize: "15px", fontWeight: "bold" }}>
-              BELT.fi
-            </span>
-          )}
-          <div
-            style={{
-              margin: "0 0 0 10px",
-              padding: "1px 3px",
-              fontSize: "12px",
-              display: "inline",
-              color: "#615EFF",
-              border: "0.5px solid #615EFF",
-              borderRadius: "5px",
-            }}
-          >
-            ▾ 89.30 %
-          </div>
-        </Col>
-        <Col>
-          <Link to="./FarmingDetailInfo">
-            <Button
-              variant="secondary"
-              size="sm"
+    <div className="farming-coin-item">
+      <div className="container-border" style={{ margin: "0" }}>
+        <Row style={{ height: "40px" }}>
+          <Col xs={1}>
+            {atype == "Klaytn" ? (
+              <img src={klaytn_img} />
+            ) : (
+              <img src={bsc_img} />
+            )}
+          </Col>
+          <Col xs={7}>
+            {atype == "Klaytn" ? (
+              <span style={{ fontSize: "15px", fontWeight: "bold" }}>
+                KLAYswap
+              </span>
+            ) : (
+              <span style={{ fontSize: "15px", fontWeight: "bold" }}>
+                BELT.fi
+              </span>
+            )}
+            <div
               style={{
-                backgroundColor: "inherit",
-                color: "#000",
-                border: "none",
-                textDecoration: "underline",
+                margin: "0 0 0 10px",
+                padding: "1px 3px",
+                fontSize: "12px",
+                display: "inline",
+                color: "#615EFF",
+                border: "0.5px solid #615EFF",
+                borderRadius: "5px",
               }}
             >
-              자세히 보기
-            </Button>
-          </Link>
-        </Col>
-      </Row>
-      <div className="container-border" style={{ margin: "0" }}>
+              ▾ 89.30 %
+            </div>
+          </Col>
+          <Col style={{ textAlign: "right" }}>
+            <Link to="./FarmingDetailInfo">
+              <Button
+                size="sm"
+                style={{
+                  backgroundColor: "inherit",
+                  color: "#000",
+                  border: "none",
+                  textDecoration: "underline",
+                }}
+              >
+                자세히 보기
+              </Button>
+            </Link>
+          </Col>
+        </Row>
+
         <div className="farming-grid">
           <p style={{ flex: "1" }}>총 매수 금액</p>{" "}
           <p style={{ flex: "1", textAlign: "right" }}> ₩3,600,000</p>
