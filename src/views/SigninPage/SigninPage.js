@@ -152,7 +152,7 @@ function SigninPage(props) {
       >
         <Col>
           <div className="input-box">
-            <FormControl fullWidth={true}>
+            <FormControl style={{ width: "80%" }}>
               <InputLabel
                 style={{
                   color: "#828282",
@@ -169,21 +169,21 @@ function SigninPage(props) {
                 style={{ padding: "0 0 5px 8px" }}
                 onChange={onPasswordHandler}
               ></Input>
-              <IconButton
-                aria-label="visibilityIcon"
-                component="span"
-                style={{ position: "absolute", right: "40px", top: "10px" }}
-              >
-                <VisibilityIcon />
-              </IconButton>
-              <IconButton
-                aria-label="visibilityIcon"
-                component="span"
-                style={{ position: "absolute", right: "0px", top: "10px" }}
-              >
-                <ClearIcon />
-              </IconButton>
             </FormControl>
+            <IconButton
+              aria-label="visibilityIcon"
+              component="span"
+              style={{ width: "10%" }}
+            >
+              <VisibilityIcon />
+            </IconButton>
+            <IconButton
+              aria-label="clearIcon"
+              component="span"
+              style={{ width: "10%" }}
+            >
+              <ClearIcon />
+            </IconButton>
           </div>
         </Col>
       </Row>
