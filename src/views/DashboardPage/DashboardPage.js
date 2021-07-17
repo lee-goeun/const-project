@@ -31,7 +31,10 @@ import {
   Box,
   Typography,
   Divider,
+  IconButton
 } from "@material-ui/core";
+import Menu from '@material-ui/icons/Menu';
+
 
 import logo_img from "static/img/logo_img.png";
 import "./dashboard_page.css";
@@ -185,14 +188,19 @@ function DashboardPage(props) {
       <Row
         className="align-items-end"
         style={{
-          height: "100px",
+          height: "90px",
+          paddingBottom: '10px'
         }}
       >
         <Col xs={4} style={{ textAlign: "left" }}>
           <img src={logo_img} style={{ width: "100%" }} />
         </Col>
-        <Col></Col>
-        <Col
+        <Col style={{ textAlign: "right" }}>
+          <IconButton color="black" component="span" size="large" >
+            <Menu style={{fontSize: '120%'}} />
+          </IconButton>
+        </Col>
+        {/* <Col
           xs={5}
           style={{
             textAlign: "right",
@@ -223,7 +231,7 @@ function DashboardPage(props) {
               </MenuItem>
             </Select>
           </FormControl>
-        </Col>
+        </Col> */}
       </Row>
 
       <Row
