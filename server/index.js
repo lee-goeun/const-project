@@ -59,7 +59,8 @@ app.use('/api/user', userRouter);
 var walletRouter = require('./api/wallet'); 
 app.use('/api/wallet', walletRouter)
 
-
+var tokenRouter = require('./api/token'); 
+app.use('/api/token', tokenRouter)
 
 const port = process.env.PORT || 5000; 
 app.listen(port, () => { 

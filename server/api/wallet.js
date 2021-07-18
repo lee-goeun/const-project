@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const { Wallet } = require('../models/Wallet'); 
-const { KlaytnBalanceWallet } = require('./smart_contract/klaytn'); 
+const { getKlaytnBalanceWallet } = require('./smart_contract/klaytn'); 
 const { BSCBalanceWallet } = require('./smart_contract/bsc');
 const { BSCLending } = require('./smart_contract/bsc_lending'); 
 
@@ -63,9 +63,9 @@ router.post('/balance', (req, res) => {
 
     switch (atype) {
         case "Klaytn":
-            KlaytnBalanceWallet(address)
-            .then((result => { 
-                res.json({status: true, result})
+            getKlaytnBalanceWallet(address, to_krw=true)
+            .then((wallet_balance => { 
+                res.json({status: true, result: wallet_balance})
             }))
             break;
         
