@@ -42,6 +42,10 @@ function SigninPage(props) {
     setPassword(event.currentTarget.value);
   };
 
+  const onPasswordKeyDown = (event) => {
+    console.log("ebent", event);
+  };
+
   function setFormStatusMessage(msg, status = true) {
     if (!msg) {
       return <span style={{ fontSize: "12px" }}>&nbsp;</span>;
@@ -168,9 +172,10 @@ function SigninPage(props) {
                 type="password"
                 style={{ padding: "0 0 5px 8px" }}
                 onChange={onPasswordHandler}
+                keyDown={{ onPasswordKeyDown }}
               ></Input>
             </FormControl>
-            <div style={{ float: "right" }}>
+            <div style={{ float: "right", padding: "6px 0" }}>
               <IconButton aria-label="visibilityIcon" component="span">
                 <VisibilityIcon />
               </IconButton>
