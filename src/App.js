@@ -31,6 +31,21 @@ const createStoreWithMiddleware = applyMiddleware(
   promiseMiddleware,
   ReducThunk
 )(createStore);
+
+const MyInfoRouter = () => {
+  const basePath = "/myinfo";
+  return (
+    <Switch>
+      <Route path={`${basePath}/`} exact component={Auth(MyInfoPage, true)} />
+      <Route path={`${basePath}/loginsetting`} component={Auth(LoginSetupPage, true)} />
+      <Route path={`${basePath}/wallet`} component={Auth(MyWalletPage, true)} />
+      <Route path={`${basePath}/wallet/new`} component={Auth(WalletAddMainPage, true)} />
+      <Route path={`${basePath}/wallet/import`} component={Auth(WalletImportPage, true)} />
+      <Route path={`${basePath}/wallet/create`} component={Auth(WalletCreatePage, true)} />
+    </Switch>
+  );
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -62,20 +77,20 @@ class App extends React.Component {
               />
 
               <Route path="/contents" component={Auth(ContentsPage, true)} />
-
-              <Route exact path="/myinfo" component={Auth(MyInfoPage, true)} />
+              <MyInfoRouter />
+              {/* <Route exact path="/myinfo" component={Auth(MyInfoPage, true)} />
               <Route
                 exact
                 path="/myinfo/wallet"
                 component={Auth(MyWalletPage, true)}
-              />
-              <Route
+              /> */}
+              {/* <Route
                 exact
                 path="/myinfo/loginsetting"
                 component={Auth(LoginSetupPage, true)}
-              />
+              /> */}
 
-              <Route
+              {/* <Route
                 exact
                 path="/myinfo/wallet/new"
                 component={Auth(WalletAddMainPage, true)}
@@ -89,7 +104,7 @@ class App extends React.Component {
                 exact
                 path="/myinfo/wallet/create"
                 component={Auth(WalletCreatePage, true)}
-              />
+              /> */}
             </Switch>
           </Container>
         </div>
