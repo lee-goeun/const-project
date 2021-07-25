@@ -55,10 +55,12 @@ async function getKlaytnTokenPrice(){
   for (let token of tokens) { // KLAY-?? LP
     const { atype, address, token:token_name } = token; 
     if (atype === 'SINGLE' || !token_name.includes('KLAY')) continue; 
-      let [ tokenA, tokenB ] = token_name.split('_'); 
-      let diff_decimal = tokens_obj[tokenB].decimal - tokens_obj[tokenA].decimal; 
-      let tokenB_price = await calcTokenPriceB(address, klay_price, diff_decimal); 
-      price_obj[tokenB] = tokenB_price; 
+
+    let [ tokenA, tokenB ] = token_name.split('_'); 
+    if (!tokens_obj.hasOwnProperty(tokenB)) continue; 
+    let diff_decimal = tokens_obj[tokenB].decimal - tokens_obj[tokenA].decimal; 
+    let tokenB_price = await calcTokenPriceB(address, klay_price, diff_decimal); 
+    price_obj[tokenB] = tokenB_price; 
   }
 
   for (let token of tokens) { // ??-?? LP
