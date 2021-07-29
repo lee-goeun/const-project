@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  font-family: "Pretendard Variable";         
+  src: url("./fonts/PretendardVariable.ttf") format('truetype'); 
 }
 
 .App-logo {
