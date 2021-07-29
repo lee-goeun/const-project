@@ -39,9 +39,9 @@ const MyInfoRouter = () => {
       <Route path={`${basePath}/`} exact component={Auth(MyInfoPage, true)} />
       <Route path={`${basePath}/loginsetting`} component={Auth(LoginSetupPage, true)} />
       <Route path={`${basePath}/wallet`} component={Auth(MyWalletPage, true)} />
-      <Route path={`${basePath}/wallet/new`} component={Auth(WalletAddMainPage, true)} />
+      {/* <Route path={`${basePath}/wallet/new`} component={Auth(WalletAddMainPage, true)} />
       <Route path={`${basePath}/wallet/import`} component={Auth(WalletImportPage, true)} />
-      <Route path={`${basePath}/wallet/create`} component={Auth(WalletCreatePage, true)} />
+      <Route path={`${basePath}/wallet/create`} component={Auth(WalletCreatePage, true)} /> */}
     </Switch>
   );
 };

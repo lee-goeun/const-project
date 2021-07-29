@@ -3,15 +3,21 @@ import React, {useState} from 'react';
 import {Container, Row, Col, Button} from 'react-bootstrap'; 
 import axios from 'axios'; 
 
-import { useHistory } from 'react-router-dom'; 
+import { Route, Switch, useHistory } from 'react-router-dom'; 
 import { useDispatch } from 'react-redux'; 
 import { withRouter } from 'react-router';
+
+import Auth from "../../hoc/auth"
 
 import SwipeableViews from 'react-swipeable-views';
 import PropTypes from 'prop-types'; 
 
 import { auth } from '_actions/user_action'; 
 import NavBar from 'components/NavBar';
+
+import WalletAddMainPage from "views/MyInfoPage/WalletAdd/WalletAddMainPage";
+import WalletImportPage from "views/MyInfoPage/WalletAdd/WalletImportPage";
+import WalletCreatePage from "views/MyInfoPage/WalletAdd/WalletCreatePage";
 
 import { 
   AppBar, 
@@ -309,6 +315,12 @@ function MyWalletPage(props) {
       </Row>
 
       <NavBar myinfo={true} />
+      <Switch>
+        <Route exact path="/" component={Auth(MyWalletPage, true)} />
+        <Route path="/new" component={Auth(WalletAddMainPage, true)} />
+        <Route path="/import" component={Auth(WalletImportPage, true)} />
+        <Route path="/create" component={Auth(WalletCreatePage, true)} />
+      </Switch>
     </Container>
   )
 }
