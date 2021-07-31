@@ -56,7 +56,7 @@ function FarmingInfo(props) {
                   textDecoration: "underline",
                 }}
               >
-                자세히 보기
+                자세히 보기22
               </Button>
             </Link>
           </Col>
